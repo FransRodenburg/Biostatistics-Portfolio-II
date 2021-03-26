@@ -156,7 +156,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4.5" data-path="bird-song.html"><a href="bird-song.html#inspect-suspicious-values"><i class="fa fa-check"></i><b>1.4.5</b> Inspect suspicious value(s)</a></li>
 <li class="chapter" data-level="1.4.6" data-path="bird-song.html"><a href="bird-song.html#remove-unrealistic-values"><i class="fa fa-check"></i><b>1.4.6</b> Remove unrealistic value(s)</a></li>
 <li class="chapter" data-level="1.4.7" data-path="bird-song.html"><a href="bird-song.html#remove-values-incorrectly-marked-0"><i class="fa fa-check"></i><b>1.4.7</b> Remove values incorrectly marked “0”</a></li>
-<li class="chapter" data-level="1.4.8" data-path="bird-song.html"><a href="bird-song.html#run-the-analysis"><i class="fa fa-check"></i><b>1.4.8</b> Run the analysis</a></li>
+<li class="chapter" data-level="1.4.8" data-path="bird-song.html"><a href="bird-song.html#other-changes"><i class="fa fa-check"></i><b>1.4.8</b> Other changes</a></li>
+<li class="chapter" data-level="1.4.9" data-path="bird-song.html"><a href="bird-song.html#run-the-analysis"><i class="fa fa-check"></i><b>1.4.9</b> Run the analysis</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -349,6 +350,14 @@ HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
 ##  $ Hemisfeer    : chr  &quot;R&quot; &quot;R&quot; &quot;R&quot; &quot;R&quot; ...
 ##  $ Vogel_ID     : chr  &quot;OG164&quot; &quot;PK179&quot; &quot;PK190&quot; &quot;PK198&quot; ...
 ##  $ Totaal_volume: num  0.1104 0.0276 0.2304 0.0204 0.3012 ...</code></pre>
+<p>In order for this to work:</p>
+<ol style="list-style-type: decimal">
+<li>If you haven’t already, <a href="https://fransrodenburg.github.io/Biostatistics-Portfolio-I/installation.html">install RStudio</a>;</li>
+<li>Download the data. If it is an Excel (.xlsx) file, open it in Excel and save as comma-separated values (.csv) first;</li>
+<li>Open RStudio and <a href="https://youtu.be/2Sovzf6lVRo?t=280">create a new R markdown file</a>. <strong>Save this file to the same folder as the data!</strong></li>
+<li>Go to <strong>Session</strong> &gt; <strong>Set Working Directory</strong> &gt; <strong>To Source File Location</strong>. R now knows where to look for your data;</li>
+<li><a href="https://youtu.be/AHAR7j-IUOw?t=357">Create a new code chunk</a> and run the following code (<strong>replace the name of the data</strong> with the name of yours):</li>
+</ol>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="bird-song.html#cb13-1"></a>Birdsong &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Birdsong2020.csv&quot;</span>)</span>
 <span id="cb13-2"><a href="bird-song.html#cb13-2"></a><span class="kw">str</span>(Birdsong)</span></code></pre></div>
 <p>Here we see the following:</p>
@@ -391,7 +400,7 @@ HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="bird-song.html#cb19-1"></a>Birdsong<span class="op">$</span>Area[Birdsong<span class="op">$</span>Area <span class="op">==</span><span class="st"> &quot;Ra&quot;</span>]  &lt;-<span class="st"> &quot;RA&quot;</span></span>
 <span id="cb19-2"><a href="bird-song.html#cb19-2"></a>Birdsong<span class="op">$</span>Area[Birdsong<span class="op">$</span>Area <span class="op">==</span><span class="st"> &quot;HCV&quot;</span>] &lt;-<span class="st"> &quot;HVC&quot;</span></span>
 <span id="cb19-3"><a href="bird-song.html#cb19-3"></a>Birdsong<span class="op">$</span>Area &lt;-<span class="st"> </span><span class="kw">droplevels</span>(Birdsong<span class="op">$</span>Area)</span></code></pre></div>
-<p>The first two lines correct the wrong entries, and the third line removed the now unused levels <code>Ra</code> and <code>HCV</code>.</p>
+<p>The first two lines correct the wrong entries, and the third line removes the now unused levels <code>Ra</code> and <code>HCV</code>.</p>
 </div>
 <div id="plot-your-data" class="section level3">
 <h3><span class="header-section-number">1.4.4</span> Plot your data</h3>
@@ -446,8 +455,12 @@ HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
 <p><img src="Biostatistics_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>And now we have a fairly good idea of what we should expect in the results: HVC is lower than area X, and RA is even lower. The difference between hemispheres is extremely small and unlikely to be picked up by the model.</p>
 </div>
+<div id="other-changes" class="section level3">
+<h3><span class="header-section-number">1.4.8</span> Other changes</h3>
+<p>Are there any other strange values, incorrect labels, or other problems in your version of the data set? Adjust the data in R as you see fit before moving on to the analysis.</p>
+</div>
 <div id="run-the-analysis" class="section level3">
-<h3><span class="header-section-number">1.4.8</span> Run the analysis</h3>
+<h3><span class="header-section-number">1.4.9</span> Run the analysis</h3>
 <p>Once you’re over here, you can copy the models I’ve <a href="bird-song.html#brainmodel">shown above</a>:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="bird-song.html#cb30-1"></a>model1 &lt;-<span class="st"> </span><span class="kw">lmer</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Area <span class="op">+</span><span class="st"> </span>Hemisphere <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>BirdID) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>StudentID), </span>
 <span id="cb30-2"><a href="bird-song.html#cb30-2"></a>               <span class="dt">data =</span> Birdsong)</span>

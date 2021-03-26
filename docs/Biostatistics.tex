@@ -466,6 +466,23 @@ In the example data above, there were simple errors in the data entry, a problem
 ##  $ Totaal_volume: num  0.1104 0.0276 0.2304 0.0204 0.3012 ...
 \end{verbatim}
 
+In order for this to work:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  If you haven't already, \href{https://fransrodenburg.github.io/Biostatistics-Portfolio-I/installation.html}{install RStudio};
+\item
+  Download the data. If it is an Excel (.xlsx) file, open it in Excel and save as comma-separated values (.csv) first;
+\item
+  Open RStudio and \href{https://youtu.be/2Sovzf6lVRo?t=280}{create a new R markdown file}. \textbf{Save this file to the same folder as the data!}
+\item
+  Go to \textbf{Session} \textgreater{} \textbf{Set Working Directory} \textgreater{} \textbf{To Source File Location}. R now knows where to look for your data;
+\item
+  \href{https://youtu.be/AHAR7j-IUOw?t=357}{Create a new code chunk} and run the following code (\textbf{replace the name of the data} with the name of yours):
+\end{enumerate}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{Birdsong <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"Birdsong2020.csv"}\NormalTok{)}
@@ -555,7 +572,7 @@ Ah, some people entered \texttt{Ra} instead of \texttt{RA}, and some entered \te
 \end{Highlighting}
 \end{Shaded}
 
-The first two lines correct the wrong entries, and the third line removed the now unused levels \texttt{Ra} and \texttt{HCV}.
+The first two lines correct the wrong entries, and the third line removes the now unused levels \texttt{Ra} and \texttt{HCV}.
 
 \hypertarget{plot-your-data}{%
 \subsection{Plot your data}\label{plot-your-data}}
@@ -678,6 +695,11 @@ One final time we inspect the boxplots:
 \includegraphics{Biostatistics_files/figure-latex/unnamed-chunk-20-1.pdf}
 
 And now we have a fairly good idea of what we should expect in the results: HVC is lower than area X, and RA is even lower. The difference between hemispheres is extremely small and unlikely to be picked up by the model.
+
+\hypertarget{other-changes}{%
+\subsection{Other changes}\label{other-changes}}
+
+Are there any other strange values, incorrect labels, or other problems in your version of the data set? Adjust the data in R as you see fit before moving on to the analysis.
 
 \hypertarget{run-the-analysis}{%
 \subsection{Run the analysis}\label{run-the-analysis}}

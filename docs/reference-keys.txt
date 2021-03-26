@@ -20,4 +20,5 @@ plot-your-data
 inspect-suspicious-values
 remove-unrealistic-values
 remove-values-incorrectly-marked-0
+other-changes
 run-the-analysis
