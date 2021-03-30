@@ -341,16 +341,11 @@ HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
 <h2><span class="header-section-number">1.4</span> Assignment: Data Cleaning</h2>
 <p>So far, I have only covered the experimental design and the model used. But I left out an important part of analysis: Data cleaning.</p>
 <p>In the example data above, there were simple errors in the data entry, a problematic outlier, and low quality data mislabeled as <span class="math inline">\(0\)</span>. Here I am going to show how you can clean your data set to make it ready for analysis.</p>
-<p><strong>Your assignment</strong> is to clean your own data set following the example here. When you’re done, copy the analysis shown above and report on the conclusion.</p>
+<p><strong>Your assignment</strong> is to clean your own data set following the example here. When you’re done, copy the analysis shown above and write a conclusion.</p>
 <div id="read-the-data-and-look-at-the-structure" class="section level3">
 <h3><span class="header-section-number">1.4.1</span> Read the data and look at the structure</h3>
-<pre><code>## &#39;data.frame&#39;:    376 obs. of  5 variables:
-##  $ Student_ID   : int  42 42 42 42 42 73 73 73 73 73 ...
-##  $ Zanggebied   : chr  &quot;RA&quot; &quot;RA&quot; &quot;RA&quot; &quot;RA&quot; ...
-##  $ Hemisfeer    : chr  &quot;R&quot; &quot;R&quot; &quot;R&quot; &quot;R&quot; ...
-##  $ Vogel_ID     : chr  &quot;OG164&quot; &quot;PK179&quot; &quot;PK190&quot; &quot;PK198&quot; ...
-##  $ Totaal_volume: num  0.1104 0.0276 0.2304 0.0204 0.3012 ...</code></pre>
-<p>In order for this to work:</p>
+<iframe src="https://www.youtube.com/embed/BGUqZc-Pb8w" width="672" height="400px">
+</iframe>
 <ol style="list-style-type: decimal">
 <li>If you haven’t already, <a href="https://fransrodenburg.github.io/Biostatistics-Portfolio-I/installation.html">install RStudio</a>;</li>
 <li>Download the data. If it is an Excel (.xlsx) file, open it in Excel and save as comma-separated values (.csv) first;</li>
@@ -358,8 +353,14 @@ HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
 <li>Go to <strong>Session</strong> &gt; <strong>Set Working Directory</strong> &gt; <strong>To Source File Location</strong>. R now knows where to look for your data;</li>
 <li><a href="https://youtu.be/AHAR7j-IUOw?t=357">Create a new code chunk</a> and run the following code (<strong>replace the name of the data</strong> with the name of yours):</li>
 </ol>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="bird-song.html#cb13-1"></a>Birdsong &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Birdsong2020.csv&quot;</span>)</span>
-<span id="cb13-2"><a href="bird-song.html#cb13-2"></a><span class="kw">str</span>(Birdsong)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="bird-song.html#cb12-1"></a>Birdsong &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Birdsong2020.csv&quot;</span>)</span>
+<span id="cb12-2"><a href="bird-song.html#cb12-2"></a><span class="kw">str</span>(Birdsong)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    376 obs. of  5 variables:
+##  $ Student_ID   : int  42 42 42 42 42 73 73 73 73 73 ...
+##  $ Zanggebied   : chr  &quot;RA&quot; &quot;RA&quot; &quot;RA&quot; &quot;RA&quot; ...
+##  $ Hemisfeer    : chr  &quot;R&quot; &quot;R&quot; &quot;R&quot; &quot;R&quot; ...
+##  $ Vogel_ID     : chr  &quot;OG164&quot; &quot;PK179&quot; &quot;PK190&quot; &quot;PK198&quot; ...
+##  $ Totaal_volume: num  0.1104 0.0276 0.2304 0.0204 0.3012 ...</code></pre>
 <p>Here we see the following:</p>
 <ul>
 <li>The data is stored as a <code>data.frame</code>, and consists of 376 observations of 5 variables;</li>
