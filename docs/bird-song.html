@@ -361,6 +361,7 @@ HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
 ##  $ Hemisfeer    : chr  &quot;R&quot; &quot;R&quot; &quot;R&quot; &quot;R&quot; ...
 ##  $ Vogel_ID     : chr  &quot;OG164&quot; &quot;PK179&quot; &quot;PK190&quot; &quot;PK198&quot; ...
 ##  $ Totaal_volume: num  0.1104 0.0276 0.2304 0.0204 0.3012 ...</code></pre>
+<p>I will go over the data cleaning of the 2020 data. You can follow along with the data from your own year.</p>
 <p>Here we see the following:</p>
 <ul>
 <li>The data is stored as a <code>data.frame</code>, and consists of 376 observations of 5 variables;</li>
@@ -373,17 +374,20 @@ HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
 <li><code>Totaal_volume</code>: A numeric value (any number).</li>
 </ul></li>
 </ul>
+<p><font color = "red"><strong>Note</strong></font>: If <code>Totaal_volume</code> uses commas (,) instead of a period (.) as a decimal separator, you will see that R treats the variable as a character (<code>chr</code>). To fix this, run the following:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="bird-song.html#cb14-1"></a>Birdsong<span class="op">$</span>Totaal_volume &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class="dt">text =</span> Birdsong<span class="op">$</span>Totaal_volume, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div>
+<p>If some students entered the data with periods and others with commas, you might want to have a look at the original data and apply corrections where needed.</p>
 </div>
 <div id="shorten-variable-names-and-change-variable-types" class="section level3">
 <h3><span class="header-section-number">1.4.2</span> Shorten variable names and change variable types</h3>
 <p>The first step I made is change the variable names to be slightly shorter (and in English) and convert the categorical variables to factors:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="bird-song.html#cb14-1"></a><span class="kw">colnames</span>(Birdsong)  &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;StudentID&quot;</span>, <span class="st">&quot;Area&quot;</span>, <span class="st">&quot;Hemisphere&quot;</span>, <span class="st">&quot;BirdID&quot;</span>, <span class="st">&quot;Volume&quot;</span>)</span>
-<span id="cb14-2"><a href="bird-song.html#cb14-2"></a>Birdsong<span class="op">$</span>StudentID  &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>StudentID)</span>
-<span id="cb14-3"><a href="bird-song.html#cb14-3"></a>Birdsong<span class="op">$</span>Area       &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>Area)</span>
-<span id="cb14-4"><a href="bird-song.html#cb14-4"></a>Birdsong<span class="op">$</span>Hemisphere &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>Hemisphere)</span>
-<span id="cb14-5"><a href="bird-song.html#cb14-5"></a>Birdsong<span class="op">$</span>BirdID     &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>BirdID)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="bird-song.html#cb15-1"></a><span class="kw">colnames</span>(Birdsong)  &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;StudentID&quot;</span>, <span class="st">&quot;Area&quot;</span>, <span class="st">&quot;Hemisphere&quot;</span>, <span class="st">&quot;BirdID&quot;</span>, <span class="st">&quot;Volume&quot;</span>)</span>
+<span id="cb15-2"><a href="bird-song.html#cb15-2"></a>Birdsong<span class="op">$</span>StudentID  &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>StudentID)</span>
+<span id="cb15-3"><a href="bird-song.html#cb15-3"></a>Birdsong<span class="op">$</span>Area       &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>Area)</span>
+<span id="cb15-4"><a href="bird-song.html#cb15-4"></a>Birdsong<span class="op">$</span>Hemisphere &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>Hemisphere)</span>
+<span id="cb15-5"><a href="bird-song.html#cb15-5"></a>Birdsong<span class="op">$</span>BirdID     &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>BirdID)</span></code></pre></div>
 <p>Why does that matter? Well, have a look what happens when you check the structure again:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="bird-song.html#cb15-1"></a><span class="kw">str</span>(Birdsong)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="bird-song.html#cb16-1"></a><span class="kw">str</span>(Birdsong)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    376 obs. of  5 variables:
 ##  $ StudentID : Factor w/ 75 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 38 38 38 38 38 65 65 65 65 65 ...
 ##  $ Area      : Factor w/ 5 levels &quot;Area X&quot;,&quot;HCV&quot;,..: 5 5 5 5 5 1 1 1 1 1 ...
@@ -391,22 +395,22 @@ HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
 ##  $ BirdID    : Factor w/ 69 levels &quot;Bk 145&quot;,&quot;BK 145&quot;,..: 38 59 60 61 68 64 19 49 51 50 ...
 ##  $ Volume    : num  0.1104 0.0276 0.2304 0.0204 0.3012 ...</code></pre>
 <p>Now we see that there were apparently 75 students, and… wait, <em>5</em> areas?</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="bird-song.html#cb17-1"></a><span class="kw">summary</span>(Birdsong<span class="op">$</span>Area)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="bird-song.html#cb18-1"></a><span class="kw">summary</span>(Birdsong<span class="op">$</span>Area)</span></code></pre></div>
 <pre><code>## Area X    HCV    HVC     Ra     RA 
 ##    125      5    128      1    117</code></pre>
 <p>Ah, some people entered <code>Ra</code> instead of <code>RA</code>, and some entered <code>HCV</code> instead of <code>HVC</code>. Let’s fix their mistakes:</p>
 </div>
 <div id="fix-errors-in-data-entry" class="section level3">
 <h3><span class="header-section-number">1.4.3</span> Fix errors in data entry</h3>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="bird-song.html#cb19-1"></a>Birdsong<span class="op">$</span>Area[Birdsong<span class="op">$</span>Area <span class="op">==</span><span class="st"> &quot;Ra&quot;</span>]  &lt;-<span class="st"> &quot;RA&quot;</span></span>
-<span id="cb19-2"><a href="bird-song.html#cb19-2"></a>Birdsong<span class="op">$</span>Area[Birdsong<span class="op">$</span>Area <span class="op">==</span><span class="st"> &quot;HCV&quot;</span>] &lt;-<span class="st"> &quot;HVC&quot;</span></span>
-<span id="cb19-3"><a href="bird-song.html#cb19-3"></a>Birdsong<span class="op">$</span>Area &lt;-<span class="st"> </span><span class="kw">droplevels</span>(Birdsong<span class="op">$</span>Area)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="bird-song.html#cb20-1"></a>Birdsong<span class="op">$</span>Area[Birdsong<span class="op">$</span>Area <span class="op">==</span><span class="st"> &quot;Ra&quot;</span>]  &lt;-<span class="st"> &quot;RA&quot;</span></span>
+<span id="cb20-2"><a href="bird-song.html#cb20-2"></a>Birdsong<span class="op">$</span>Area[Birdsong<span class="op">$</span>Area <span class="op">==</span><span class="st"> &quot;HCV&quot;</span>] &lt;-<span class="st"> &quot;HVC&quot;</span></span>
+<span id="cb20-3"><a href="bird-song.html#cb20-3"></a>Birdsong<span class="op">$</span>Area &lt;-<span class="st"> </span><span class="kw">droplevels</span>(Birdsong<span class="op">$</span>Area)</span></code></pre></div>
 <p>The first two lines correct the wrong entries, and the third line removes the now unused levels <code>Ra</code> and <code>HCV</code>.</p>
 </div>
 <div id="plot-your-data" class="section level3">
 <h3><span class="header-section-number">1.4.4</span> Plot your data</h3>
-<p>And now we’re good to go! The first thing you should do in any analysis is to try and create one or several relevant plots of your data. No amount of looking at numbers is going to give you the same, easy insight as a figure:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="bird-song.html#cb20-1"></a><span class="kw">boxplot</span>(Volume <span class="op">~</span><span class="st"> </span>Hemisphere <span class="op">*</span><span class="st"> </span>Area, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
+<p>And now we’re good to go! The first thing you should do in any analysis after reading the data is to try and create one or several relevant plots of your data. No amount of looking at numbers is going to give you the same, easy insight as a figure:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="bird-song.html#cb21-1"></a><span class="kw">boxplot</span>(Volume <span class="op">~</span><span class="st"> </span>Hemisphere <span class="op">*</span><span class="st"> </span>Area, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
 <p><img src="Biostatistics_files/figure-html/plot-1.png" width="672" /></p>
 <p>We can already make several useful observations:</p>
 <ul>
@@ -418,24 +422,24 @@ HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
 <div id="inspect-suspicious-values" class="section level3">
 <h3><span class="header-section-number">1.4.5</span> Inspect suspicious value(s)</h3>
 <p>Let’s inspect the suspicious value further. Since it is the larger value, I can use <code>which.max</code> to find it:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="bird-song.html#cb21-1"></a>suspicious &lt;-<span class="st"> </span><span class="kw">which.max</span>(Birdsong<span class="op">$</span>Volume)</span>
-<span id="cb21-2"><a href="bird-song.html#cb21-2"></a>Birdsong<span class="op">$</span>Volume[suspicious] <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(Birdsong<span class="op">$</span>Volume)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="bird-song.html#cb22-1"></a>suspicious &lt;-<span class="st"> </span><span class="kw">which.max</span>(Birdsong<span class="op">$</span>Volume)</span>
+<span id="cb22-2"><a href="bird-song.html#cb22-2"></a>Birdsong<span class="op">$</span>Volume[suspicious] <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(Birdsong<span class="op">$</span>Volume)</span></code></pre></div>
 <pre><code>## [1] 53.86181</code></pre>
 <p>This value is <span class="math inline">\(53.9 \times\)</span> larger than the mean total volume. Keep in mind that volume is a three-dimensional measurement. It grows at a rate of <span class="math inline">\(x^3\)</span> with the length, width and depth of the brain. Therefore, at least some extreme observations are expected… So let’s use a transformation that accounts for this:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="bird-song.html#cb23-1"></a><span class="kw">boxplot</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Hemisphere <span class="op">*</span><span class="st"> </span>Area, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
-<p><img src="Biostatistics_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="bird-song.html#cb24-1"></a><span class="kw">boxplot</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Hemisphere <span class="op">*</span><span class="st"> </span>Area, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
+<p><img src="Biostatistics_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>Even with a transformation of <span class="math inline">\(\text{volume}^\frac{1}{3}\)</span>, the suspiciously large value still sticks out quite a lot.</p>
 </div>
 <div id="remove-unrealistic-values" class="section level3">
 <h3><span class="header-section-number">1.4.6</span> Remove unrealistic value(s)</h3>
 <p>It is hard to say what this value is supposed to be. It could have been a misplaced decimal separator, but should it then be <span class="math inline">\(1.4292\)</span>, or <span class="math inline">\(0.14292\)</span>? Since we cannot say for sure what it should have been, let’s omit this observation from further analysis:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="bird-song.html#cb24-1"></a>Birdsong &lt;-<span class="st"> </span>Birdsong[<span class="op">-</span>suspicious, ]</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="bird-song.html#cb25-1"></a>Birdsong &lt;-<span class="st"> </span>Birdsong[<span class="op">-</span>suspicious, ]</span></code></pre></div>
 <p>If this analysis were to be used in a publication, we would have to go further: How much does this observation affect the results? Can we use a form of multiple imputation to fill in the missing value we have now created? But for now we’ll leave it at this.</p>
 <p>Let’s create the boxplots again to see what the data look like without the suspicious value:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="bird-song.html#cb25-1"></a><span class="kw">boxplot</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Hemisphere <span class="op">*</span><span class="st"> </span>Area, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
-<p><img src="Biostatistics_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="bird-song.html#cb26-1"></a><span class="kw">boxplot</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Hemisphere <span class="op">*</span><span class="st"> </span>Area, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
+<p><img src="Biostatistics_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>This looks far more reasonable. Now let’s address the next elephant in the room: There appears to be far greater variance in the volume of area X, than in RA or HVC. But notice how measurements of zero almost exclusively occur in area X. We can confirm this as follows:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="bird-song.html#cb26-1"></a><span class="kw">by</span>(Birdsong, Birdsong<span class="op">$</span>Area, <span class="cf">function</span>(x){<span class="kw">sum</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)})</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="bird-song.html#cb27-1"></a><span class="kw">by</span>(Birdsong, Birdsong<span class="op">$</span>Area, <span class="cf">function</span>(x){<span class="kw">sum</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)})</span></code></pre></div>
 <pre><code>## Birdsong$Area: Area X
 ## [1] 45
 ## ------------------------------------------------------------ 
@@ -450,10 +454,10 @@ HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
 <h3><span class="header-section-number">1.4.7</span> Remove values incorrectly marked “0”</h3>
 <p>Fortunately, the cause of the zeroes was in most cases simply a low quality sample, unrelated to the actual volume. It is still suspicious that this happened considerably more often in area X than elsewhere, but for the purpose of this exercise let’s consider these measurements to be missing completely at random. Whatever they were, they weren’t <span class="math inline">\(0\)</span>, and this is skewing the results strongly otherwise.</p>
 <p>Therefore, in the next step we set these values to ‘not available’ (<code>NA</code>):</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="bird-song.html#cb28-1"></a>Birdsong<span class="op">$</span>Volume[Birdsong<span class="op">$</span>Volume <span class="op">==</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="bird-song.html#cb29-1"></a>Birdsong<span class="op">$</span>Volume[Birdsong<span class="op">$</span>Volume <span class="op">==</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span></code></pre></div>
 <p>One final time we inspect the boxplots:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="bird-song.html#cb29-1"></a><span class="kw">boxplot</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Hemisphere <span class="op">*</span><span class="st"> </span>Area, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
-<p><img src="Biostatistics_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="bird-song.html#cb30-1"></a><span class="kw">boxplot</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Hemisphere <span class="op">*</span><span class="st"> </span>Area, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
+<p><img src="Biostatistics_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>And now we have a fairly good idea of what we should expect in the results: HVC is lower than area X, and RA is even lower. The difference between hemispheres is extremely small and unlikely to be picked up by the model.</p>
 </div>
 <div id="other-changes" class="section level3">
@@ -463,10 +467,10 @@ HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
 <div id="run-the-analysis" class="section level3">
 <h3><span class="header-section-number">1.4.9</span> Run the analysis</h3>
 <p>Once you’re over here, you can copy the models I’ve <a href="bird-song.html#brainmodel">shown above</a>:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="bird-song.html#cb30-1"></a>model1 &lt;-<span class="st"> </span><span class="kw">lmer</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Area <span class="op">+</span><span class="st"> </span>Hemisphere <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>BirdID) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>StudentID), </span>
-<span id="cb30-2"><a href="bird-song.html#cb30-2"></a>               <span class="dt">data =</span> Birdsong)</span>
-<span id="cb30-3"><a href="bird-song.html#cb30-3"></a>model2 &lt;-<span class="st"> </span><span class="kw">lmer</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Area <span class="op">+</span><span class="st"> </span>Hemisphere <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>BirdID), </span>
-<span id="cb30-4"><a href="bird-song.html#cb30-4"></a>               <span class="dt">data =</span> Birdsong)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="bird-song.html#cb31-1"></a>model1 &lt;-<span class="st"> </span><span class="kw">lmer</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Area <span class="op">+</span><span class="st"> </span>Hemisphere <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>BirdID) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>StudentID), </span>
+<span id="cb31-2"><a href="bird-song.html#cb31-2"></a>               <span class="dt">data =</span> Birdsong)</span>
+<span id="cb31-3"><a href="bird-song.html#cb31-3"></a>model2 &lt;-<span class="st"> </span><span class="kw">lmer</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Area <span class="op">+</span><span class="st"> </span>Hemisphere <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>BirdID), </span>
+<span id="cb31-4"><a href="bird-song.html#cb31-4"></a>               <span class="dt">data =</span> Birdsong)</span></code></pre></div>
 <p>Do both models run without errors? Can you <a href="bird-song.html#comparebrain">compare the models like shown before</a>? What do you conclude from <a href="bird-song.html#brainoutput">the output</a>?</p>
 
 </div>
