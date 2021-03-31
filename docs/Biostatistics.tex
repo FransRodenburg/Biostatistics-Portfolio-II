@@ -292,8 +292,7 @@ Let's call this model \texttt{model1}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{model1 <-}\StringTok{ }\KeywordTok{lmer}\NormalTok{(Volume}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{) }\OperatorTok{~}\StringTok{ }\NormalTok{Area }\OperatorTok{+}\StringTok{ }\NormalTok{Hemisphere }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{BirdID) }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{StudentID), }
-               \DataTypeTok{data =}\NormalTok{ Birdsong)}
+\NormalTok{model1 <-}\StringTok{ }\KeywordTok{lmer}\NormalTok{(Volume}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{) }\OperatorTok{~}\StringTok{ }\NormalTok{Area }\OperatorTok{+}\StringTok{ }\NormalTok{Hemisphere }\OperatorTok{+}\StringTok{ }\NormalTok{Treatment }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{BirdID) }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{StudentID), }\DataTypeTok{data =}\NormalTok{ Birdsong)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -313,8 +312,8 @@ Let's call this model \texttt{model1}:
 
 That's the whole model! You might not have been able to think of that yourself, but if you understand why this particular model was used, that is more than enough.
 
-\hypertarget{interpreting-the-output}{%
-\subsection{Interpreting the Output}\label{interpreting-the-output}}
+\hypertarget{interpretbrain}{%
+\subsection{Interpreting the Output}\label{interpretbrain}}
 
 Let's start by producing a summary of the model:
 
@@ -329,24 +328,59 @@ There's a lot going on in the summary, and most of it is not relevant for this a
 \begin{verbatim}
 Random effects:
  Groups    Name        Variance  Std.Dev.
- StudentID (Intercept) 0.0003434 0.01853 
- BirdID    (Intercept) 0.0262298 0.16196 
- Residual              0.0066445 0.08151 
-Number of obs: 322, groups:  StudentID, 75; BirdID, 68
+ StudentID (Intercept) 0.0006164 0.02483 
+ BirdID    (Intercept) 0.0053421 0.07309 
+ Residual              0.0064676 0.08042 
+Number of obs: 318, groups:  StudentID, 75; BirdID, 32
 
 Fixed effects:
-             Estimate Std. Error        df t value Pr(>|t|)    
-(Intercept)  0.723953   0.023065 99.726496  31.387   <2e-16 ***
-AreaHVC     -0.204927   0.013914 63.788016 -14.728   <2e-16 ***
-AreaRA      -0.257940   0.014450 60.295630 -17.850   <2e-16 ***
-HemisphereR  0.005896   0.010697 46.569237   0.551    0.584
+              Estimate Std. Error        df t value Pr(>|t|)    
+(Intercept)   0.595091   0.034643 36.805541  17.178  < 2e-16 ***
+AreaHVC      -0.211419   0.014083 62.855150 -15.012  < 2e-16 ***
+AreaRA       -0.261225   0.014406 61.958464 -18.134  < 2e-16 ***
+HemisphereR   0.003952   0.010848 46.077031   0.364  0.71732    
+TreatmentF5  -0.039343   0.045208 26.549452  -0.870  0.39196    
+TreatmentF15  0.109993   0.043607 26.671033   2.522  0.01794 *  
+TreatmentF50  0.168776   0.045011 26.117294   3.750  0.00089 ***
+TreatmentM0   0.364359   0.043560 26.567674   8.365 6.41e-09 ***
 \end{verbatim}
 
-Variance between students is extremely small (compare its value of \texttt{0.0003434} to that of birds, or the residual (remaining) variance). This is actually good news, it means that the measurements do not depend much at all on who is measuring. You could therefore opt to leave out the random effect for students:
+Here we see that:
+
+\begin{itemize}
+\tightlist
+\item
+  Variance between students is very small (\texttt{0.0064676});
+\item
+  Variance between birds is comparable to the residual variance (\texttt{0.0053421} and \texttt{0.0064676}, respectively);
+\item
+  The reference group (Area \texttt{RA}, Hemisphere \texttt{L}, Treatment \texttt{F0}) has a \(\sqrt[3]{\text{volume}}\) of \texttt{0.595091};
+\item
+  The HVC area has lower volume on average (\texttt{-0.211419} lower than \texttt{RA});
+\item
+  The RA area has yet lower volume on average (\texttt{-0.261225} lower than \texttt{RA});
+\item
+  The right hemisphere does not differ significantly from the left (difference of \texttt{0.003952}, \(p\)-value of \texttt{0.71732});
+\item
+  Treatment \texttt{F5} does not differ significantly from \texttt{F0} (difference of \texttt{-0.039343}, \(p\)-value of \texttt{0.39196});
+\item
+  Treatment \texttt{F15} has a higher volume than \texttt{F0} on average;
+\item
+  Treatment \texttt{F50} has an even higher volume than \texttt{F0} on average;
+\item
+  Males have yet higher volume.
+\end{itemize}
+
+\hypertarget{simplifying-the-model}{%
+\subsection{Simplifying the model}\label{simplifying-the-model}}
+
+So the variance between students is extremely small. This is actually good news, because it means that the measurements do not depend much at all on who is measuring. If this is also the case in your year's data, it means your class measured consistently. Good job!
+
+If the effect is so small, you could opt to leave out the random effect for students:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{model2 <-}\StringTok{ }\KeywordTok{lmer}\NormalTok{(Volume}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{) }\OperatorTok{~}\StringTok{ }\NormalTok{Area }\OperatorTok{+}\StringTok{ }\NormalTok{Hemisphere }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{BirdID), }\DataTypeTok{data =}\NormalTok{ Birdsong)}
+\NormalTok{model2 <-}\StringTok{ }\KeywordTok{lmer}\NormalTok{(Volume}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{) }\OperatorTok{~}\StringTok{ }\NormalTok{Area }\OperatorTok{+}\StringTok{ }\NormalTok{Hemisphere }\OperatorTok{+}\StringTok{ }\NormalTok{Treatment }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{BirdID), }\DataTypeTok{data =}\NormalTok{ Birdsong)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -368,11 +402,12 @@ refitting model(s) with ML (instead of REML)
 \begin{verbatim}
 Data: Birdsong
 Models:
-model2: Volume^(1/3) ~ Area + Hemisphere + (1 | BirdID)
-model1: Volume^(1/3) ~ Area + Hemisphere + (1 | BirdID) + (1 | StudentID)
-       npar     AIC     BIC logLik deviance Chisq Df Pr(>Chisq)
-model2    6 -484.18 -461.53 248.09  -496.18                    
-model1    7 -482.54 -456.12 248.27  -496.54 0.357  1     0.5502
+model2: Volume^(1/3) ~ Area + Hemisphere + Treatment + (1 | BirdID)
+model1: Volume^(1/3) ~ Area + Hemisphere + Treatment + (1 | BirdID) + 
+model1:     (1 | StudentID)
+       npar     AIC     BIC logLik deviance  Chisq Df Pr(>Chisq)
+model2   10 -594.34 -556.72 307.17  -614.34                     
+model1   11 -594.07 -552.69 308.04  -616.07 1.7325  1     0.1881
 \end{verbatim}
 
 First we are notified that the models were refitted using maximum likelihood. This is because measures like AIC, BIC and deviance cannot be calculated from \emph{restricted} maximum likelihood (the usual fitting procedure for mixed models). In this table we see several things:
@@ -380,7 +415,7 @@ First we are notified that the models were refitted using maximum likelihood. Th
 \begin{itemize}
 \tightlist
 \item
-  \texttt{model2} uses \(6\) parameters, while \texttt{model1} uses \(7\);
+  \texttt{model2} uses \(10\) parameters, while \texttt{model1} uses \(11\);
 \item
   \texttt{model2} has a lower AIC (note the minus sign);
 \item
@@ -390,16 +425,16 @@ First we are notified that the models were refitted using maximum likelihood. Th
 \item
   \texttt{model2} has a marginally higher remaining deviance (again, note the minus sign);
 \item
-  A chi-squared test on these two values of the deviance produces \(\chi^2 = 0.3124\);
+  A chi-squared test on these two values of the deviance produces \(\chi^2 = 1.7325\);
 \item
   This test has one degree of freedom (the difference in the number of parameters used by the models);
 \item
-  The corresponding \(p\)-value for this \(\chi^2\)-test on one degree of freedom is \(p = 0.5762\);
+  The corresponding \(p\)-value for this \(\chi^2\)-test on one degree of freedom is \(p = 0.1881\);
 \item
-  This is non-significant for any reasonable level of significance;
+  This is not significant at any reasonable level of significance;
 \end{itemize}
 
-That's a lot to consider at once, and most of these terms you have probably never heard of before. Fortunately, the important part is the easiest to interpret: Neither model fits the data significantly better than the other (\(p = 0.5762\)).
+That's a lot to consider at once, and most of these terms you have probably never heard of before. Fortunately, the relevant part is the easiest to interpret: Neither model fits the data significantly better than the other (\(p = 0.1881\)).
 
 The usual thing to do in a situation like this is to go with the model that uses fewer parameters. After all, if you can fit the data just as well with a simpler model, what is the benefit of making it more complex?
 
@@ -415,35 +450,27 @@ The usual thing to do in a situation like this is to go with the model that uses
 \begin{verbatim}
 Random effects:
  Groups   Name        Variance Std.Dev.
- BirdID   (Intercept) 0.026279 0.16211 
- Residual             0.006966 0.08346 
-Number of obs: 322, groups:  BirdID, 68
+ BirdID   (Intercept) 0.005537 0.07441 
+ Residual             0.007019 0.08378 
+Number of obs: 318, groups:  BirdID, 32
 
 Fixed effects:
-              Estimate Std. Error         df t value Pr(>|t|)    
-(Intercept)   0.722294   0.022743 101.208286  31.759   <2e-16 ***
-AreaHVC      -0.202879   0.013069 258.000162 -15.523   <2e-16 ***
-AreaRA       -0.256395   0.013540 258.830858 -18.936   <2e-16 ***
-HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    
+               Estimate Std. Error         df t value Pr(>|t|)    
+(Intercept)    0.591845   0.034869  36.260578  16.974  < 2e-16 ***
+AreaHVC       -0.208483   0.012627 285.552762 -16.511  < 2e-16 ***
+AreaRA        -0.257411   0.012897 286.979684 -19.959  < 2e-16 ***
+HemisphereR    0.003086   0.009461 284.170394   0.326 0.744541    
+TreatmentF5   -0.039735   0.046147  27.947606  -0.861 0.396535    
+TreatmentF15   0.110134   0.044503  28.051566   2.475 0.019642 *  
+TreatmentF50   0.170132   0.045926  27.433116   3.705 0.000944 ***
+TreatmentM0    0.365201   0.044446  27.916048   8.217 6.21e-09 ***
 \end{verbatim}
 
-Here we see that the individual difference between birds is actually quite large: Its variance of \texttt{0.026279} is more than \(3\times\) the same size of the residual variance of \texttt{0.006966}.
+Here we see that the individual difference between birds is actually quite large: Its variance of \texttt{0.005537} is almost the same as the remaining variance after accounting for all effects of \texttt{0.007019}.
 
-We also see that there is a significant difference in volume between the reference group (area X) and the other groups:
+We also see that the estimated effects and their significance differs very little from \protect\hyperlink{interpretbrain}{the previous output of \texttt{model1}}. This is desirable, because if the difference in estimates were very large, we would have to put more thought into which model we believe to be the right one. In this case, either model gives more or less the same answer to the research question.
 
-\begin{itemize}
-\tightlist
-\item
-  \texttt{(Intercept)} is the value of \(\sqrt[3]{\text{volume}}\) for the reference group (area X);
-\item
-  \texttt{AreaHVC} is on average \(-0.20\) lower with a significant \(p\)-value of \(p < 2 \cdot 10^{-16}\);
-\item
-  \texttt{AreaHVC} is on average \(-0.26\) lower with a significant \(p\)-value of \(p < 2 \cdot 10^{-16}\);
-\item
-  \texttt{HemisphereR} does not differ significantly, with an average difference of \(0.0053\) between left and right and a \(p\)-value of \(p = 0.593\).
-\end{itemize}
-
-This matches up nicely with what we saw in the boxplots, but now we have estimates and \(p\)-values that have been corrected for the individual differences between birds!
+Moreover, as you'll see in the assignment, the results match up nicely with what you see in the boxplots.
 
 \hypertarget{assignment-data-cleaning}{%
 \section{Assignment: Data Cleaning}\label{assignment-data-cleaning}}
@@ -452,21 +479,14 @@ So far, I have only covered the experimental design and the model used. But I le
 
 In the example data above, there were simple errors in the data entry, a problematic outlier, and low quality data mislabeled as \(0\). Here I am going to show how you can clean your data set to make it ready for analysis.
 
-\textbf{Your assignment} is to clean your own data set following the example here. When you're done, copy the analysis shown above and report on the conclusion.
+\textbf{Your assignment} is to clean your own data set following the example here. When you're done, copy the analysis shown above and write a conclusion.
 
 \hypertarget{read-the-data-and-look-at-the-structure}{%
 \subsection{Read the data and look at the structure}\label{read-the-data-and-look-at-the-structure}}
 
 \begin{verbatim}
-## 'data.frame':    376 obs. of  5 variables:
-##  $ Student_ID   : int  42 42 42 42 42 73 73 73 73 73 ...
-##  $ Zanggebied   : chr  "RA" "RA" "RA" "RA" ...
-##  $ Hemisfeer    : chr  "R" "R" "R" "R" ...
-##  $ Vogel_ID     : chr  "OG164" "PK179" "PK190" "PK198" ...
-##  $ Totaal_volume: num  0.1104 0.0276 0.2304 0.0204 0.3012 ...
+## PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
 \end{verbatim}
-
-In order for this to work:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -480,8 +500,18 @@ In order for this to work:
 \item
   Go to \textbf{Session} \textgreater{} \textbf{Set Working Directory} \textgreater{} \textbf{To Source File Location}. R now knows where to look for your data;
 \item
-  \href{https://youtu.be/AHAR7j-IUOw?t=357}{Create a new code chunk} and run the following code (\textbf{replace the name of the data} with the name of yours):
+  \href{https://youtu.be/AHAR7j-IUOw?t=357}{Create a new code chunk} and run the following code (\textbf{replace the file name} with your file name):
 \end{enumerate}
+
+\begin{verbatim}
+## 'data.frame':    376 obs. of  6 variables:
+##  $ Student_ID   : int  42 42 42 42 42 73 73 73 73 73 ...
+##  $ Zanggebied   : chr  "RA" "RA" "RA" "RA" ...
+##  $ Hemisfeer    : chr  "R" "R" "R" "R" ...
+##  $ Vogel_ID     : chr  "OG164" "PK179" "PK190" "PK198" ...
+##  $ Totaal_volume: num  0.1104 0.0276 0.2304 0.0204 0.3012 ...
+##  $ Treatment    : chr  "NA" "F0" "F50" "F5" ...
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -489,6 +519,8 @@ In order for this to work:
 \KeywordTok{str}\NormalTok{(Birdsong)}
 \end{Highlighting}
 \end{Shaded}
+
+I will go over the data cleaning of the 2020 data. You can follow along with the data from your own year.
 
 Here we see the following:
 
@@ -510,7 +542,9 @@ Here we see the following:
   \item
     \texttt{Vogel\_ID}: A character value;
   \item
-    \texttt{Totaal\_volume}: A numeric value (any number).
+    \texttt{Totaal\_volume}: A numeric value (any number);
+  \item
+    \texttt{Treatment}: A character value.
   \end{itemize}
 \end{itemize}
 
@@ -521,11 +555,13 @@ The first step I made is change the variable names to be slightly shorter (and i
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{colnames}\NormalTok{(Birdsong)  <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"StudentID"}\NormalTok{, }\StringTok{"Area"}\NormalTok{, }\StringTok{"Hemisphere"}\NormalTok{, }\StringTok{"BirdID"}\NormalTok{, }\StringTok{"Volume"}\NormalTok{)}
+\KeywordTok{colnames}\NormalTok{(Birdsong)  <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"StudentID"}\NormalTok{, }\StringTok{"Area"}\NormalTok{, }\StringTok{"Hemisphere"}\NormalTok{, }\StringTok{"BirdID"}\NormalTok{, }\StringTok{"Volume"}\NormalTok{, }\StringTok{"Treatment"}\NormalTok{)}
 \NormalTok{Birdsong}\OperatorTok{$}\NormalTok{StudentID  <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(Birdsong}\OperatorTok{$}\NormalTok{StudentID)}
 \NormalTok{Birdsong}\OperatorTok{$}\NormalTok{Area       <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(Birdsong}\OperatorTok{$}\NormalTok{Area)}
 \NormalTok{Birdsong}\OperatorTok{$}\NormalTok{Hemisphere <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(Birdsong}\OperatorTok{$}\NormalTok{Hemisphere)}
 \NormalTok{Birdsong}\OperatorTok{$}\NormalTok{BirdID     <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(Birdsong}\OperatorTok{$}\NormalTok{BirdID)}
+\NormalTok{Birdsong}\OperatorTok{$}\NormalTok{Treatment  <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(Birdsong}\OperatorTok{$}\NormalTok{Treatment, }
+                              \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"F0"}\NormalTok{, }\StringTok{"F5"}\NormalTok{, }\StringTok{"F15"}\NormalTok{, }\StringTok{"F50"}\NormalTok{, }\StringTok{"M0"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -538,12 +574,13 @@ Why does that matter? Well, have a look what happens when you check the structur
 \end{Shaded}
 
 \begin{verbatim}
-## 'data.frame':    376 obs. of  5 variables:
+## 'data.frame':    376 obs. of  6 variables:
 ##  $ StudentID : Factor w/ 75 levels "1","2","3","4",..: 38 38 38 38 38 65 65 65 65 65 ...
 ##  $ Area      : Factor w/ 5 levels "Area X","HCV",..: 5 5 5 5 5 1 1 1 1 1 ...
 ##  $ Hemisphere: Factor w/ 2 levels "L","R": 2 2 2 2 2 1 1 1 1 1 ...
 ##  $ BirdID    : Factor w/ 69 levels "Bk 145","BK 145",..: 38 59 60 61 68 64 19 49 51 50 ...
 ##  $ Volume    : num  0.1104 0.0276 0.2304 0.0204 0.3012 ...
+##  $ Treatment : Factor w/ 5 levels "F0","F5","F15",..: NA 1 4 2 5 5 3 1 2 4 ...
 \end{verbatim}
 
 Now we see that there were apparently 75 students, and\ldots{} wait, \emph{5} areas?
@@ -577,7 +614,7 @@ The first two lines correct the wrong entries, and the third line removes the no
 \hypertarget{plot-your-data}{%
 \subsection{Plot your data}\label{plot-your-data}}
 
-And now we're good to go! The first thing you should do in any analysis is to try and create one or several relevant plots of your data. No amount of looking at numbers is going to give you the same, easy insight as a figure:
+And now we're good to go! The first thing you should do in any analysis after reading the data is to try and create one or several relevant plots of your data. No amount of looking at numbers is going to give you the same, easy insight as a figure:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -586,6 +623,14 @@ And now we're good to go! The first thing you should do in any analysis is to tr
 \end{Shaded}
 
 \includegraphics{Biostatistics_files/figure-latex/plot-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(Volume }\OperatorTok{~}\StringTok{ }\NormalTok{Treatment, }\DataTypeTok{data =}\NormalTok{ Birdsong)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Biostatistics_files/figure-latex/plot-2.pdf}
 
 We can already make several useful observations:
 
@@ -596,13 +641,15 @@ We can already make several useful observations:
 \item
   The left and right hemispheres do not seem to differ much;
 \item
-  There is a suspiciously large value for area X of the right hemisphere. Is this an unrealistic value?
+  Volume seems to increase from \texttt{F0} to \texttt{F5}, to \texttt{F15} to \texttt{F50}, and males have even larger volume;
+\item
+  There is a suspiciously large value for area X of the right hemisphere (first figure). Is this an unrealistic value?
 \end{itemize}
 
 \hypertarget{inspect-suspicious-values}{%
 \subsection{Inspect suspicious value(s)}\label{inspect-suspicious-values}}
 
-Let's inspect the suspicious value further. Since it is the larger value, I can use \texttt{which.max} to find it:
+Let's inspect the suspicious value further. Since it is the largest value, I can use \texttt{which.max} to find it:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -623,7 +670,7 @@ This value is \(53.9 \times\) larger than the mean total volume. Keep in mind th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Biostatistics_files/figure-latex/unnamed-chunk-15-1.pdf}
+\includegraphics{Biostatistics_files/figure-latex/unnamed-chunk-16-1.pdf}
 
 Even with a transformation of \(\text{volume}^\frac{1}{3}\), the suspiciously large value still sticks out quite a lot.
 
@@ -648,13 +695,13 @@ Let's create the boxplots again to see what the data look like without the suspi
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Biostatistics_files/figure-latex/unnamed-chunk-17-1.pdf}
+\includegraphics{Biostatistics_files/figure-latex/unnamed-chunk-18-1.pdf}
 
 This looks far more reasonable. Now let's address the next elephant in the room: There appears to be far greater variance in the volume of area X, than in RA or HVC. But notice how measurements of zero almost exclusively occur in area X. We can confirm this as follows:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{by}\NormalTok{(Birdsong, Birdsong}\OperatorTok{$}\NormalTok{Area, }\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{sum}\NormalTok{(x }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{)\})}
+\KeywordTok{by}\NormalTok{(Birdsong, Birdsong}\OperatorTok{$}\NormalTok{Area, }\ControlFlowTok{function}\NormalTok{(x)\{}\KeywordTok{sum}\NormalTok{(x }\OperatorTok{==}\StringTok{ }\DecValTok{0}\NormalTok{, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)\})}
 \end{Highlighting}
 \end{Shaded}
 
@@ -692,7 +739,7 @@ One final time we inspect the boxplots:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Biostatistics_files/figure-latex/unnamed-chunk-20-1.pdf}
+\includegraphics{Biostatistics_files/figure-latex/unnamed-chunk-21-1.pdf}
 
 And now we have a fairly good idea of what we should expect in the results: HVC is lower than area X, and RA is even lower. The difference between hemispheres is extremely small and unlikely to be picked up by the model.
 

@@ -144,9 +144,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.1" data-path="bird-song.html"><a href="bird-song.html#install-package-lmertest"><i class="fa fa-check"></i><b>1.3.1</b> Install Package <code>lmerTest</code></a></li>
 <li class="chapter" data-level="1.3.2" data-path="bird-song.html"><a href="bird-song.html#load-package-lmertest"><i class="fa fa-check"></i><b>1.3.2</b> Load Package <code>lmerTest</code></a></li>
 <li class="chapter" data-level="1.3.3" data-path="bird-song.html"><a href="bird-song.html#brainmodel"><i class="fa fa-check"></i><b>1.3.3</b> Fit a Mixed Model With <code>lmer()</code></a></li>
-<li class="chapter" data-level="1.3.4" data-path="bird-song.html"><a href="bird-song.html#interpreting-the-output"><i class="fa fa-check"></i><b>1.3.4</b> Interpreting the Output</a></li>
-<li class="chapter" data-level="1.3.5" data-path="bird-song.html"><a href="bird-song.html#comparebrain"><i class="fa fa-check"></i><b>1.3.5</b> Decide on the right model</a></li>
-<li class="chapter" data-level="1.3.6" data-path="bird-song.html"><a href="bird-song.html#brainoutput"><i class="fa fa-check"></i><b>1.3.6</b> Interpret the final output</a></li>
+<li class="chapter" data-level="1.3.4" data-path="bird-song.html"><a href="bird-song.html#interpretbrain"><i class="fa fa-check"></i><b>1.3.4</b> Interpreting the Output</a></li>
+<li class="chapter" data-level="1.3.5" data-path="bird-song.html"><a href="bird-song.html#simplifying-the-model"><i class="fa fa-check"></i><b>1.3.5</b> Simplifying the model</a></li>
+<li class="chapter" data-level="1.3.6" data-path="bird-song.html"><a href="bird-song.html#comparebrain"><i class="fa fa-check"></i><b>1.3.6</b> Decide on the right model</a></li>
+<li class="chapter" data-level="1.3.7" data-path="bird-song.html"><a href="bird-song.html#brainoutput"><i class="fa fa-check"></i><b>1.3.7</b> Interpret the final output</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="bird-song.html"><a href="bird-song.html#assignment-data-cleaning"><i class="fa fa-check"></i><b>1.4</b> Assignment: Data Cleaning</a><ul>
 <li class="chapter" data-level="1.4.1" data-path="bird-song.html"><a href="bird-song.html#read-the-data-and-look-at-the-structure"><i class="fa fa-check"></i><b>1.4.1</b> Read the data and look at the structure</a></li>
@@ -252,8 +253,7 @@ Figure 1.1: A simplified version of the experiment. Each bird has had different 
 <div id="brainmodel" class="section level3">
 <h3><span class="header-section-number">1.3.3</span> Fit a Mixed Model With <code>lmer()</code></h3>
 <p>Let’s call this model <code>model1</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="bird-song.html#cb3-1"></a>model1 &lt;-<span class="st"> </span><span class="kw">lmer</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Area <span class="op">+</span><span class="st"> </span>Hemisphere <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>BirdID) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>StudentID), </span>
-<span id="cb3-2"><a href="bird-song.html#cb3-2"></a>               <span class="dt">data =</span> Birdsong)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="bird-song.html#cb3-1"></a>model1 &lt;-<span class="st"> </span><span class="kw">lmer</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Area <span class="op">+</span><span class="st"> </span>Hemisphere <span class="op">+</span><span class="st"> </span>Treatment <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>BirdID) <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>StudentID), <span class="dt">data =</span> Birdsong)</span></code></pre></div>
 <ul>
 <li><code>lmer</code> is short for linear mixed effects regression—a mixed model;</li>
 <li><code>Volume</code> is transformed as <span class="math inline">\(\sqrt[3]{x} = x^{\frac{1}{3}}\)</span> <a href="bird-song.html#braintransform">as explained earlier</a>;</li>
@@ -263,78 +263,98 @@ Figure 1.1: A simplified version of the experiment. Each bird has had different 
 </ul>
 <p>That’s the whole model! You might not have been able to think of that yourself, but if you understand why this particular model was used, that is more than enough.</p>
 </div>
-<div id="interpreting-the-output" class="section level3">
+<div id="interpretbrain" class="section level3">
 <h3><span class="header-section-number">1.3.4</span> Interpreting the Output</h3>
 <p>Let’s start by producing a summary of the model:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="bird-song.html#cb4-1"></a><span class="kw">summary</span>(model1)</span></code></pre></div>
 <p>There’s a lot going on in the summary, and most of it is not relevant for this assignment. Therefore, the only thing I’ve show here is the <code>Random effects</code> and <code>Fixed effects</code> tabs.</p>
 <pre><code>Random effects:
  Groups    Name        Variance  Std.Dev.
- StudentID (Intercept) 0.0003434 0.01853 
- BirdID    (Intercept) 0.0262298 0.16196 
- Residual              0.0066445 0.08151 
-Number of obs: 322, groups:  StudentID, 75; BirdID, 68
+ StudentID (Intercept) 0.0006164 0.02483 
+ BirdID    (Intercept) 0.0053421 0.07309 
+ Residual              0.0064676 0.08042 
+Number of obs: 318, groups:  StudentID, 75; BirdID, 32
 
 Fixed effects:
-             Estimate Std. Error        df t value Pr(&gt;|t|)    
-(Intercept)  0.723953   0.023065 99.726496  31.387   &lt;2e-16 ***
-AreaHVC     -0.204927   0.013914 63.788016 -14.728   &lt;2e-16 ***
-AreaRA      -0.257940   0.014450 60.295630 -17.850   &lt;2e-16 ***
-HemisphereR  0.005896   0.010697 46.569237   0.551    0.584</code></pre>
-<p>Variance between students is extremely small (compare its value of <code>0.0003434</code> to that of birds, or the residual (remaining) variance). This is actually good news, it means that the measurements do not depend much at all on who is measuring. You could therefore opt to leave out the random effect for students:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="bird-song.html#cb6-1"></a>model2 &lt;-<span class="st"> </span><span class="kw">lmer</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Area <span class="op">+</span><span class="st"> </span>Hemisphere <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>BirdID), <span class="dt">data =</span> Birdsong)</span></code></pre></div>
+              Estimate Std. Error        df t value Pr(&gt;|t|)    
+(Intercept)   0.595091   0.034643 36.805541  17.178  &lt; 2e-16 ***
+AreaHVC      -0.211419   0.014083 62.855150 -15.012  &lt; 2e-16 ***
+AreaRA       -0.261225   0.014406 61.958464 -18.134  &lt; 2e-16 ***
+HemisphereR   0.003952   0.010848 46.077031   0.364  0.71732    
+TreatmentF5  -0.039343   0.045208 26.549452  -0.870  0.39196    
+TreatmentF15  0.109993   0.043607 26.671033   2.522  0.01794 *  
+TreatmentF50  0.168776   0.045011 26.117294   3.750  0.00089 ***
+TreatmentM0   0.364359   0.043560 26.567674   8.365 6.41e-09 ***</code></pre>
+<p>Here we see that:</p>
+<ul>
+<li>Variance between students is very small (<code>0.0064676</code>);</li>
+<li>Variance between birds is comparable to the residual variance (<code>0.0053421</code> and <code>0.0064676</code>, respectively);</li>
+<li>The reference group (Area <code>RA</code>, Hemisphere <code>L</code>, Treatment <code>F0</code>) has a <span class="math inline">\(\sqrt[3]{\text{volume}}\)</span> of <code>0.595091</code>;</li>
+<li>The HVC area has lower volume on average (<code>-0.211419</code> lower than <code>RA</code>);</li>
+<li>The RA area has yet lower volume on average (<code>-0.261225</code> lower than <code>RA</code>);</li>
+<li>The right hemisphere does not differ significantly from the left (difference of <code>0.003952</code>, <span class="math inline">\(p\)</span>-value of <code>0.71732</code>);</li>
+<li>Treatment <code>F5</code> does not differ significantly from <code>F0</code> (difference of <code>-0.039343</code>, <span class="math inline">\(p\)</span>-value of <code>0.39196</code>);</li>
+<li>Treatment <code>F15</code> has a higher volume than <code>F0</code> on average;</li>
+<li>Treatment <code>F50</code> has an even higher volume than <code>F0</code> on average;</li>
+<li>Males have yet higher volume.</li>
+</ul>
+</div>
+<div id="simplifying-the-model" class="section level3">
+<h3><span class="header-section-number">1.3.5</span> Simplifying the model</h3>
+<p>So the variance between students is extremely small. This is actually good news, because it means that the measurements do not depend much at all on who is measuring. If this is also the case in your year’s data, it means your class measured consistently. Good job!</p>
+<p>If the effect is so small, you could opt to leave out the random effect for students:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="bird-song.html#cb6-1"></a>model2 &lt;-<span class="st"> </span><span class="kw">lmer</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Area <span class="op">+</span><span class="st"> </span>Hemisphere <span class="op">+</span><span class="st"> </span>Treatment <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>BirdID), <span class="dt">data =</span> Birdsong)</span></code></pre></div>
 </div>
 <div id="comparebrain" class="section level3">
-<h3><span class="header-section-number">1.3.5</span> Decide on the right model</h3>
+<h3><span class="header-section-number">1.3.6</span> Decide on the right model</h3>
 <p>Lastly, we use a test to decide which of these models fits the data better:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="bird-song.html#cb7-1"></a><span class="kw">anova</span>(model1, model2)</span></code></pre></div>
 <pre><code>refitting model(s) with ML (instead of REML)</code></pre>
 <pre><code>Data: Birdsong
 Models:
-model2: Volume^(1/3) ~ Area + Hemisphere + (1 | BirdID)
-model1: Volume^(1/3) ~ Area + Hemisphere + (1 | BirdID) + (1 | StudentID)
-       npar     AIC     BIC logLik deviance Chisq Df Pr(&gt;Chisq)
-model2    6 -484.18 -461.53 248.09  -496.18                    
-model1    7 -482.54 -456.12 248.27  -496.54 0.357  1     0.5502</code></pre>
+model2: Volume^(1/3) ~ Area + Hemisphere + Treatment + (1 | BirdID)
+model1: Volume^(1/3) ~ Area + Hemisphere + Treatment + (1 | BirdID) + 
+model1:     (1 | StudentID)
+       npar     AIC     BIC logLik deviance  Chisq Df Pr(&gt;Chisq)
+model2   10 -594.34 -556.72 307.17  -614.34                     
+model1   11 -594.07 -552.69 308.04  -616.07 1.7325  1     0.1881</code></pre>
 <p>First we are notified that the models were refitted using maximum likelihood. This is because measures like AIC, BIC and deviance cannot be calculated from <em>restricted</em> maximum likelihood (the usual fitting procedure for mixed models). In this table we see several things:</p>
 <ul>
-<li><code>model2</code> uses <span class="math inline">\(6\)</span> parameters, while <code>model1</code> uses <span class="math inline">\(7\)</span>;</li>
+<li><code>model2</code> uses <span class="math inline">\(10\)</span> parameters, while <code>model1</code> uses <span class="math inline">\(11\)</span>;</li>
 <li><code>model2</code> has a lower AIC (note the minus sign);</li>
 <li><code>model2</code> has a lower BIC;</li>
 <li><code>model2</code> has a marginally lower log-likelihood;</li>
 <li><code>model2</code> has a marginally higher remaining deviance (again, note the minus sign);</li>
-<li>A chi-squared test on these two values of the deviance produces <span class="math inline">\(\chi^2 = 0.3124\)</span>;</li>
+<li>A chi-squared test on these two values of the deviance produces <span class="math inline">\(\chi^2 = 1.7325\)</span>;</li>
 <li>This test has one degree of freedom (the difference in the number of parameters used by the models);</li>
-<li>The corresponding <span class="math inline">\(p\)</span>-value for this <span class="math inline">\(\chi^2\)</span>-test on one degree of freedom is <span class="math inline">\(p = 0.5762\)</span>;</li>
-<li>This is non-significant for any reasonable level of significance;</li>
+<li>The corresponding <span class="math inline">\(p\)</span>-value for this <span class="math inline">\(\chi^2\)</span>-test on one degree of freedom is <span class="math inline">\(p = 0.1881\)</span>;</li>
+<li>This is not significant at any reasonable level of significance;</li>
 </ul>
-<p>That’s a lot to consider at once, and most of these terms you have probably never heard of before. Fortunately, the important part is the easiest to interpret: Neither model fits the data significantly better than the other (<span class="math inline">\(p = 0.5762\)</span>).</p>
+<p>That’s a lot to consider at once, and most of these terms you have probably never heard of before. Fortunately, the relevant part is the easiest to interpret: Neither model fits the data significantly better than the other (<span class="math inline">\(p = 0.1881\)</span>).</p>
 <p>The usual thing to do in a situation like this is to go with the model that uses fewer parameters. After all, if you can fit the data just as well with a simpler model, what is the benefit of making it more complex?</p>
 </div>
 <div id="brainoutput" class="section level3">
-<h3><span class="header-section-number">1.3.6</span> Interpret the final output</h3>
+<h3><span class="header-section-number">1.3.7</span> Interpret the final output</h3>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="bird-song.html#cb10-1"></a><span class="kw">summary</span>(model2)</span></code></pre></div>
 <pre><code>Random effects:
  Groups   Name        Variance Std.Dev.
- BirdID   (Intercept) 0.026279 0.16211 
- Residual             0.006966 0.08346 
-Number of obs: 322, groups:  BirdID, 68
+ BirdID   (Intercept) 0.005537 0.07441 
+ Residual             0.007019 0.08378 
+Number of obs: 318, groups:  BirdID, 32
 
 Fixed effects:
-              Estimate Std. Error         df t value Pr(&gt;|t|)    
-(Intercept)   0.722294   0.022743 101.208286  31.759   &lt;2e-16 ***
-AreaHVC      -0.202879   0.013069 258.000162 -15.523   &lt;2e-16 ***
-AreaRA       -0.256395   0.013540 258.830858 -18.936   &lt;2e-16 ***
-HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
-<p>Here we see that the individual difference between birds is actually quite large: Its variance of <code>0.026279</code> is more than <span class="math inline">\(3\times\)</span> the same size of the residual variance of <code>0.006966</code>.</p>
-<p>We also see that there is a significant difference in volume between the reference group (area X) and the other groups:</p>
-<ul>
-<li><code>(Intercept)</code> is the value of <span class="math inline">\(\sqrt[3]{\text{volume}}\)</span> for the reference group (area X);</li>
-<li><code>AreaHVC</code> is on average <span class="math inline">\(-0.20\)</span> lower with a significant <span class="math inline">\(p\)</span>-value of <span class="math inline">\(p &lt; 2 \cdot 10^{-16}\)</span>;</li>
-<li><code>AreaHVC</code> is on average <span class="math inline">\(-0.26\)</span> lower with a significant <span class="math inline">\(p\)</span>-value of <span class="math inline">\(p &lt; 2 \cdot 10^{-16}\)</span>;</li>
-<li><code>HemisphereR</code> does not differ significantly, with an average difference of <span class="math inline">\(0.0053\)</span> between left and right and a <span class="math inline">\(p\)</span>-value of <span class="math inline">\(p = 0.593\)</span>.</li>
-</ul>
-<p>This matches up nicely with what we saw in the boxplots, but now we have estimates and <span class="math inline">\(p\)</span>-values that have been corrected for the individual differences between birds!</p>
+               Estimate Std. Error         df t value Pr(&gt;|t|)    
+(Intercept)    0.591845   0.034869  36.260578  16.974  &lt; 2e-16 ***
+AreaHVC       -0.208483   0.012627 285.552762 -16.511  &lt; 2e-16 ***
+AreaRA        -0.257411   0.012897 286.979684 -19.959  &lt; 2e-16 ***
+HemisphereR    0.003086   0.009461 284.170394   0.326 0.744541    
+TreatmentF5   -0.039735   0.046147  27.947606  -0.861 0.396535    
+TreatmentF15   0.110134   0.044503  28.051566   2.475 0.019642 *  
+TreatmentF50   0.170132   0.045926  27.433116   3.705 0.000944 ***
+TreatmentM0    0.365201   0.044446  27.916048   8.217 6.21e-09 ***</code></pre>
+<p>Here we see that the individual difference between birds is actually quite large: Its variance of <code>0.005537</code> is almost the same as the remaining variance after accounting for all effects of <code>0.007019</code>.</p>
+<p>We also see that the estimated effects and their significance differs very little from <a href="bird-song.html#interpretbrain">the previous output of <code>model1</code></a>. This is desirable, because if the difference in estimates were very large, we would have to put more thought into which model we believe to be the right one. In this case, either model gives more or less the same answer to the research question.</p>
+<p>Moreover, as you’ll see in the assignment, the results match up nicely with what you see in the boxplots.</p>
 </div>
 </div>
 <div id="assignment-data-cleaning" class="section level2">
@@ -353,14 +373,15 @@ HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
 <li>Go to <strong>Session</strong> &gt; <strong>Set Working Directory</strong> &gt; <strong>To Source File Location</strong>. R now knows where to look for your data;</li>
 <li><a href="https://youtu.be/AHAR7j-IUOw?t=357">Create a new code chunk</a> and run the following code (<strong>replace the file name</strong> with your file name):</li>
 </ol>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="bird-song.html#cb12-1"></a>Birdsong &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Birdsong2020.csv&quot;</span>)</span>
-<span id="cb12-2"><a href="bird-song.html#cb12-2"></a><span class="kw">str</span>(Birdsong)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    376 obs. of  5 variables:
+<pre><code>## &#39;data.frame&#39;:    376 obs. of  6 variables:
 ##  $ Student_ID   : int  42 42 42 42 42 73 73 73 73 73 ...
 ##  $ Zanggebied   : chr  &quot;RA&quot; &quot;RA&quot; &quot;RA&quot; &quot;RA&quot; ...
 ##  $ Hemisfeer    : chr  &quot;R&quot; &quot;R&quot; &quot;R&quot; &quot;R&quot; ...
 ##  $ Vogel_ID     : chr  &quot;OG164&quot; &quot;PK179&quot; &quot;PK190&quot; &quot;PK198&quot; ...
-##  $ Totaal_volume: num  0.1104 0.0276 0.2304 0.0204 0.3012 ...</code></pre>
+##  $ Totaal_volume: num  0.1104 0.0276 0.2304 0.0204 0.3012 ...
+##  $ Treatment    : chr  &quot;NA&quot; &quot;F0&quot; &quot;F50&quot; &quot;F5&quot; ...</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="bird-song.html#cb13-1"></a>Birdsong &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Birdsong2020.csv&quot;</span>)</span>
+<span id="cb13-2"><a href="bird-song.html#cb13-2"></a><span class="kw">str</span>(Birdsong)</span></code></pre></div>
 <p>I will go over the data cleaning of the 2020 data. You can follow along with the data from your own year.</p>
 <p>Here we see the following:</p>
 <ul>
@@ -371,57 +392,61 @@ HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
 <li><code>Zanggebied</code>: A character value;</li>
 <li><code>Hemisfeer</code>: A character value;</li>
 <li><code>Vogel_ID</code>: A character value;</li>
-<li><code>Totaal_volume</code>: A numeric value (any number).</li>
+<li><code>Totaal_volume</code>: A numeric value (any number);</li>
+<li><code>Treatment</code>: A character value.</li>
 </ul></li>
 </ul>
-<p><font color = "red"><strong>Note</strong></font>: If <code>Totaal_volume</code> uses commas (,) instead of a period (.) as a decimal separator, you will see that R treats the variable as a character (<code>chr</code>). To fix this, run the following:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="bird-song.html#cb14-1"></a>Birdsong<span class="op">$</span>Totaal_volume &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class="dt">text =</span> Birdsong<span class="op">$</span>Totaal_volume, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div>
-<p>If some students entered the data with periods and others with commas, you might want to have a look at the original data and apply corrections where needed.</p>
 </div>
 <div id="shorten-variable-names-and-change-variable-types" class="section level3">
 <h3><span class="header-section-number">1.4.2</span> Shorten variable names and change variable types</h3>
 <p>The first step I made is change the variable names to be slightly shorter (and in English) and convert the categorical variables to factors:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="bird-song.html#cb15-1"></a><span class="kw">colnames</span>(Birdsong)  &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;StudentID&quot;</span>, <span class="st">&quot;Area&quot;</span>, <span class="st">&quot;Hemisphere&quot;</span>, <span class="st">&quot;BirdID&quot;</span>, <span class="st">&quot;Volume&quot;</span>)</span>
-<span id="cb15-2"><a href="bird-song.html#cb15-2"></a>Birdsong<span class="op">$</span>StudentID  &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>StudentID)</span>
-<span id="cb15-3"><a href="bird-song.html#cb15-3"></a>Birdsong<span class="op">$</span>Area       &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>Area)</span>
-<span id="cb15-4"><a href="bird-song.html#cb15-4"></a>Birdsong<span class="op">$</span>Hemisphere &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>Hemisphere)</span>
-<span id="cb15-5"><a href="bird-song.html#cb15-5"></a>Birdsong<span class="op">$</span>BirdID     &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>BirdID)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="bird-song.html#cb14-1"></a><span class="kw">colnames</span>(Birdsong)  &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;StudentID&quot;</span>, <span class="st">&quot;Area&quot;</span>, <span class="st">&quot;Hemisphere&quot;</span>, <span class="st">&quot;BirdID&quot;</span>, <span class="st">&quot;Volume&quot;</span>, <span class="st">&quot;Treatment&quot;</span>)</span>
+<span id="cb14-2"><a href="bird-song.html#cb14-2"></a>Birdsong<span class="op">$</span>StudentID  &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>StudentID)</span>
+<span id="cb14-3"><a href="bird-song.html#cb14-3"></a>Birdsong<span class="op">$</span>Area       &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>Area)</span>
+<span id="cb14-4"><a href="bird-song.html#cb14-4"></a>Birdsong<span class="op">$</span>Hemisphere &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>Hemisphere)</span>
+<span id="cb14-5"><a href="bird-song.html#cb14-5"></a>Birdsong<span class="op">$</span>BirdID     &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>BirdID)</span>
+<span id="cb14-6"><a href="bird-song.html#cb14-6"></a>Birdsong<span class="op">$</span>Treatment  &lt;-<span class="st"> </span><span class="kw">factor</span>(Birdsong<span class="op">$</span>Treatment, </span>
+<span id="cb14-7"><a href="bird-song.html#cb14-7"></a>                              <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;F0&quot;</span>, <span class="st">&quot;F5&quot;</span>, <span class="st">&quot;F15&quot;</span>, <span class="st">&quot;F50&quot;</span>, <span class="st">&quot;M0&quot;</span>))</span></code></pre></div>
 <p>Why does that matter? Well, have a look what happens when you check the structure again:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="bird-song.html#cb16-1"></a><span class="kw">str</span>(Birdsong)</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    376 obs. of  5 variables:
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="bird-song.html#cb15-1"></a><span class="kw">str</span>(Birdsong)</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    376 obs. of  6 variables:
 ##  $ StudentID : Factor w/ 75 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 38 38 38 38 38 65 65 65 65 65 ...
 ##  $ Area      : Factor w/ 5 levels &quot;Area X&quot;,&quot;HCV&quot;,..: 5 5 5 5 5 1 1 1 1 1 ...
 ##  $ Hemisphere: Factor w/ 2 levels &quot;L&quot;,&quot;R&quot;: 2 2 2 2 2 1 1 1 1 1 ...
 ##  $ BirdID    : Factor w/ 69 levels &quot;Bk 145&quot;,&quot;BK 145&quot;,..: 38 59 60 61 68 64 19 49 51 50 ...
-##  $ Volume    : num  0.1104 0.0276 0.2304 0.0204 0.3012 ...</code></pre>
+##  $ Volume    : num  0.1104 0.0276 0.2304 0.0204 0.3012 ...
+##  $ Treatment : Factor w/ 5 levels &quot;F0&quot;,&quot;F5&quot;,&quot;F15&quot;,..: NA 1 4 2 5 5 3 1 2 4 ...</code></pre>
 <p>Now we see that there were apparently 75 students, and… wait, <em>5</em> areas?</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="bird-song.html#cb18-1"></a><span class="kw">summary</span>(Birdsong<span class="op">$</span>Area)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="bird-song.html#cb17-1"></a><span class="kw">summary</span>(Birdsong<span class="op">$</span>Area)</span></code></pre></div>
 <pre><code>## Area X    HCV    HVC     Ra     RA 
 ##    125      5    128      1    117</code></pre>
 <p>Ah, some people entered <code>Ra</code> instead of <code>RA</code>, and some entered <code>HCV</code> instead of <code>HVC</code>. Let’s fix their mistakes:</p>
 </div>
 <div id="fix-errors-in-data-entry" class="section level3">
 <h3><span class="header-section-number">1.4.3</span> Fix errors in data entry</h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="bird-song.html#cb20-1"></a>Birdsong<span class="op">$</span>Area[Birdsong<span class="op">$</span>Area <span class="op">==</span><span class="st"> &quot;Ra&quot;</span>]  &lt;-<span class="st"> &quot;RA&quot;</span></span>
-<span id="cb20-2"><a href="bird-song.html#cb20-2"></a>Birdsong<span class="op">$</span>Area[Birdsong<span class="op">$</span>Area <span class="op">==</span><span class="st"> &quot;HCV&quot;</span>] &lt;-<span class="st"> &quot;HVC&quot;</span></span>
-<span id="cb20-3"><a href="bird-song.html#cb20-3"></a>Birdsong<span class="op">$</span>Area &lt;-<span class="st"> </span><span class="kw">droplevels</span>(Birdsong<span class="op">$</span>Area)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="bird-song.html#cb19-1"></a>Birdsong<span class="op">$</span>Area[Birdsong<span class="op">$</span>Area <span class="op">==</span><span class="st"> &quot;Ra&quot;</span>]  &lt;-<span class="st"> &quot;RA&quot;</span></span>
+<span id="cb19-2"><a href="bird-song.html#cb19-2"></a>Birdsong<span class="op">$</span>Area[Birdsong<span class="op">$</span>Area <span class="op">==</span><span class="st"> &quot;HCV&quot;</span>] &lt;-<span class="st"> &quot;HVC&quot;</span></span>
+<span id="cb19-3"><a href="bird-song.html#cb19-3"></a>Birdsong<span class="op">$</span>Area &lt;-<span class="st"> </span><span class="kw">droplevels</span>(Birdsong<span class="op">$</span>Area)</span></code></pre></div>
 <p>The first two lines correct the wrong entries, and the third line removes the now unused levels <code>Ra</code> and <code>HCV</code>.</p>
 </div>
 <div id="plot-your-data" class="section level3">
 <h3><span class="header-section-number">1.4.4</span> Plot your data</h3>
 <p>And now we’re good to go! The first thing you should do in any analysis after reading the data is to try and create one or several relevant plots of your data. No amount of looking at numbers is going to give you the same, easy insight as a figure:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="bird-song.html#cb21-1"></a><span class="kw">boxplot</span>(Volume <span class="op">~</span><span class="st"> </span>Hemisphere <span class="op">*</span><span class="st"> </span>Area, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="bird-song.html#cb20-1"></a><span class="kw">boxplot</span>(Volume <span class="op">~</span><span class="st"> </span>Hemisphere <span class="op">*</span><span class="st"> </span>Area, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
 <p><img src="Biostatistics_files/figure-html/plot-1.png" width="672" /></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="bird-song.html#cb21-1"></a><span class="kw">boxplot</span>(Volume <span class="op">~</span><span class="st"> </span>Treatment, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
+<p><img src="Biostatistics_files/figure-html/plot-2.png" width="672" /></p>
 <p>We can already make several useful observations:</p>
 <ul>
 <li>Area X seems to have a larger mean<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and variance<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> than the rest;</li>
 <li>The left and right hemispheres do not seem to differ much;</li>
-<li>There is a suspiciously large value for area X of the right hemisphere. Is this an unrealistic value?</li>
+<li>Volume seems to increase from <code>F0</code> to <code>F5</code>, to <code>F15</code> to <code>F50</code>, and males have even larger volume;</li>
+<li>There is a suspiciously large value for area X of the right hemisphere (first figure). Is this an unrealistic value?</li>
 </ul>
 </div>
 <div id="inspect-suspicious-values" class="section level3">
 <h3><span class="header-section-number">1.4.5</span> Inspect suspicious value(s)</h3>
-<p>Let’s inspect the suspicious value further. Since it is the larger value, I can use <code>which.max</code> to find it:</p>
+<p>Let’s inspect the suspicious value further. Since it is the largest value, I can use <code>which.max</code> to find it:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="bird-song.html#cb22-1"></a>suspicious &lt;-<span class="st"> </span><span class="kw">which.max</span>(Birdsong<span class="op">$</span>Volume)</span>
 <span id="cb22-2"><a href="bird-song.html#cb22-2"></a>Birdsong<span class="op">$</span>Volume[suspicious] <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(Birdsong<span class="op">$</span>Volume)</span></code></pre></div>
 <pre><code>## [1] 53.86181</code></pre>
@@ -439,7 +464,7 @@ HemisphereR   0.005295   0.009895 255.119269   0.535    0.593    </code></pre>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="bird-song.html#cb26-1"></a><span class="kw">boxplot</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Hemisphere <span class="op">*</span><span class="st"> </span>Area, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
 <p><img src="Biostatistics_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>This looks far more reasonable. Now let’s address the next elephant in the room: There appears to be far greater variance in the volume of area X, than in RA or HVC. But notice how measurements of zero almost exclusively occur in area X. We can confirm this as follows:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="bird-song.html#cb27-1"></a><span class="kw">by</span>(Birdsong, Birdsong<span class="op">$</span>Area, <span class="cf">function</span>(x){<span class="kw">sum</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)})</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="bird-song.html#cb27-1"></a><span class="kw">by</span>(Birdsong, Birdsong<span class="op">$</span>Area, <span class="cf">function</span>(x){<span class="kw">sum</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)})</span></code></pre></div>
 <pre><code>## Birdsong$Area: Area X
 ## [1] 45
 ## ------------------------------------------------------------ 

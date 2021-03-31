@@ -9,7 +9,8 @@ analysis-with-a-mixed-model
 install-package-lmertest
 load-package-lmertest
 brainmodel
-interpreting-the-output
+interpretbrain
+simplifying-the-model
 comparebrain
 brainoutput
 assignment-data-cleaning
