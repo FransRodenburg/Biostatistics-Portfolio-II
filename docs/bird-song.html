@@ -296,7 +296,7 @@ TreatmentM0   0.364359   0.043560 26.567674   8.365 6.41e-09 ***</code></pre>
 <li>Treatment <code>F5</code> does not differ significantly from <code>F0</code> (difference of <code>-0.039343</code>, <span class="math inline">\(p\)</span>-value of <code>0.39196</code>);</li>
 <li>Treatment <code>F15</code> has a higher volume than <code>F0</code> on average;</li>
 <li>Treatment <code>F50</code> has an even higher volume than <code>F0</code> on average;</li>
-<li>Males have yet higher volume.</li>
+<li>Males (<code>M0</code>) have yet higher volume than <code>F0</code> on average.</li>
 </ul>
 </div>
 <div id="simplifying-the-model" class="section level3">
@@ -308,7 +308,7 @@ TreatmentM0   0.364359   0.043560 26.567674   8.365 6.41e-09 ***</code></pre>
 <div id="comparebrain" class="section level3">
 <h3><span class="header-section-number">1.3.6</span> Decide on the right model</h3>
 <p>Lastly, we use a test to decide which of these models fits the data better:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="bird-song.html#cb7-1"></a><span class="kw">anova</span>(model1, model2)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="bird-song.html#cb7-1"></a><span class="kw">anova</span>(model1, model2)                                                           </span></code></pre></div>
 <pre><code>refitting model(s) with ML (instead of REML)</code></pre>
 <pre><code>Data: Birdsong
 Models:
@@ -452,7 +452,7 @@ TreatmentM0    0.365201   0.044446  27.916048   8.217 6.21e-09 ***</code></pre>
 <pre><code>## [1] 53.86181</code></pre>
 <p>This value is <span class="math inline">\(53.9 \times\)</span> larger than the mean total volume. Keep in mind that volume is a three-dimensional measurement. It grows at a rate of <span class="math inline">\(x^3\)</span> with the length, width and depth of the brain. Therefore, at least some extreme observations are expected… So let’s use a transformation that accounts for this:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="bird-song.html#cb24-1"></a><span class="kw">boxplot</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Hemisphere <span class="op">*</span><span class="st"> </span>Area, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
-<p><img src="Biostatistics_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="Biostatistics_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Even with a transformation of <span class="math inline">\(\text{volume}^\frac{1}{3}\)</span>, the suspiciously large value still sticks out quite a lot.</p>
 </div>
 <div id="remove-unrealistic-values" class="section level3">
@@ -462,7 +462,7 @@ TreatmentM0    0.365201   0.044446  27.916048   8.217 6.21e-09 ***</code></pre>
 <p>If this analysis were to be used in a publication, we would have to go further: How much does this observation affect the results? Can we use a form of multiple imputation to fill in the missing value we have now created? But for now we’ll leave it at this.</p>
 <p>Let’s create the boxplots again to see what the data look like without the suspicious value:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="bird-song.html#cb26-1"></a><span class="kw">boxplot</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Hemisphere <span class="op">*</span><span class="st"> </span>Area, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
-<p><img src="Biostatistics_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="Biostatistics_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>This looks far more reasonable. Now let’s address the next elephant in the room: There appears to be far greater variance in the volume of area X, than in RA or HVC. But notice how measurements of zero almost exclusively occur in area X. We can confirm this as follows:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="bird-song.html#cb27-1"></a><span class="kw">by</span>(Birdsong, Birdsong<span class="op">$</span>Area, <span class="cf">function</span>(x){<span class="kw">sum</span>(x <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)})</span></code></pre></div>
 <pre><code>## Birdsong$Area: Area X
@@ -482,7 +482,7 @@ TreatmentM0    0.365201   0.044446  27.916048   8.217 6.21e-09 ***</code></pre>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="bird-song.html#cb29-1"></a>Birdsong<span class="op">$</span>Volume[Birdsong<span class="op">$</span>Volume <span class="op">==</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span></code></pre></div>
 <p>One final time we inspect the boxplots:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="bird-song.html#cb30-1"></a><span class="kw">boxplot</span>(Volume<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> </span>Hemisphere <span class="op">*</span><span class="st"> </span>Area, <span class="dt">data =</span> Birdsong)</span></code></pre></div>
-<p><img src="Biostatistics_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="Biostatistics_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>And now we have a fairly good idea of what we should expect in the results: HVC is lower than area X, and RA is even lower. The difference between hemispheres is extremely small and unlikely to be picked up by the model.</p>
 </div>
 <div id="other-changes" class="section level3">
