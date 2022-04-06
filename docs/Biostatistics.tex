@@ -368,7 +368,7 @@ Here we see that:
 \item
   Treatment \texttt{F50} has an even higher volume than \texttt{F0} on average;
 \item
-  Males have yet higher volume.
+  Males (\texttt{M0}) have yet higher volume than \texttt{F0} on average.
 \end{itemize}
 
 \hypertarget{simplifying-the-model}{%
@@ -391,7 +391,7 @@ Lastly, we use a test to decide which of these models fits the data better:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{anova}\NormalTok{(model1, model2)}
+\KeywordTok{anova}\NormalTok{(model1, model2)                                                           }
 \end{Highlighting}
 \end{Shaded}
 
@@ -755,9 +755,9 @@ Once you're over here, you can copy the models I've \protect\hyperlink{brainmode
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{model1 <-}\StringTok{ }\KeywordTok{lmer}\NormalTok{(Volume}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{) }\OperatorTok{~}\StringTok{ }\NormalTok{Area }\OperatorTok{+}\StringTok{ }\NormalTok{Hemisphere }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{BirdID) }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{StudentID), }
+\NormalTok{model1 <-}\StringTok{ }\KeywordTok{lmer}\NormalTok{(Volume}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{) }\OperatorTok{~}\StringTok{ }\NormalTok{Area }\OperatorTok{+}\StringTok{ }\NormalTok{Hemisphere }\OperatorTok{+}\StringTok{ }\NormalTok{Treatment }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{BirdID) }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{StudentID), }
                \DataTypeTok{data =}\NormalTok{ Birdsong)}
-\NormalTok{model2 <-}\StringTok{ }\KeywordTok{lmer}\NormalTok{(Volume}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{) }\OperatorTok{~}\StringTok{ }\NormalTok{Area }\OperatorTok{+}\StringTok{ }\NormalTok{Hemisphere }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{BirdID), }
+\NormalTok{model2 <-}\StringTok{ }\KeywordTok{lmer}\NormalTok{(Volume}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{) }\OperatorTok{~}\StringTok{ }\NormalTok{Area }\OperatorTok{+}\StringTok{ }\NormalTok{Hemisphere }\OperatorTok{+}\StringTok{ }\NormalTok{Treatment }\OperatorTok{+}\StringTok{ }\NormalTok{(}\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{BirdID), }
                \DataTypeTok{data =}\NormalTok{ Birdsong)}
 \end{Highlighting}
 \end{Shaded}

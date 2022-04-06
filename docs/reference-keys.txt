@@ -23,3 +23,7 @@ remove-unrealistic-values
 remove-values-incorrectly-marked-0
 other-changes
 run-the-analysis
+read-the-data-into-r
+shorten-variable-names
+change-variable-types
+remove-incorrect-0
