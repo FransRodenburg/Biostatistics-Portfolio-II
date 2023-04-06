@@ -27,3 +27,4 @@ read-the-data-into-r
 shorten-variable-names
 change-variable-types
 remove-incorrect-0
+assignment-data-cleaning-modeling

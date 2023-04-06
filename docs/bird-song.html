@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Bird Song | Biostatistics Portfolio II</title>
   <meta name="description" content="Chapter 1 Bird Song | Biostatistics Portfolio II" />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Bird Song | Biostatistics Portfolio II" />
   <meta property="og:type" content="book" />
-  
   
   
   
@@ -32,7 +31,6 @@
   
 <link rel="prev" href="index.html"/>
 <link rel="next" href="references.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,8 +48,9 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -155,18 +154,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.6" data-path="bird-song.html"><a href="bird-song.html#comparebrain"><i class="fa fa-check"></i><b>1.3.6</b> Decide on the right model</a></li>
 <li class="chapter" data-level="1.3.7" data-path="bird-song.html"><a href="bird-song.html#brainoutput"><i class="fa fa-check"></i><b>1.3.7</b> Interpret the final output</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="bird-song.html"><a href="bird-song.html#assignment-data-cleaning"><i class="fa fa-check"></i><b>1.4</b> Assignment: Data Cleaning</a>
+<li class="chapter" data-level="1.4" data-path="bird-song.html"><a href="bird-song.html#assignment-data-cleaning-modeling"><i class="fa fa-check"></i><b>1.4</b> Assignment: Data Cleaning &amp; Modeling</a>
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="bird-song.html"><a href="bird-song.html#read-the-data-into-r"><i class="fa fa-check"></i><b>1.4.1</b> Read the data into R</a></li>
-<li class="chapter" data-level="1.4.2" data-path="bird-song.html"><a href="bird-song.html#shorten-variable-names"><i class="fa fa-check"></i><b>1.4.2</b> Shorten variable names</a></li>
-<li class="chapter" data-level="1.4.3" data-path="bird-song.html"><a href="bird-song.html#change-variable-types"><i class="fa fa-check"></i><b>1.4.3</b> Change variable types</a></li>
-<li class="chapter" data-level="1.4.4" data-path="bird-song.html"><a href="bird-song.html#fix-errors-in-data-entry"><i class="fa fa-check"></i><b>1.4.4</b> Fix errors in data entry</a></li>
-<li class="chapter" data-level="1.4.5" data-path="bird-song.html"><a href="bird-song.html#plot-your-data"><i class="fa fa-check"></i><b>1.4.5</b> Plot your data</a></li>
-<li class="chapter" data-level="1.4.6" data-path="bird-song.html"><a href="bird-song.html#inspect-suspicious-values"><i class="fa fa-check"></i><b>1.4.6</b> Inspect suspicious value(s)</a></li>
-<li class="chapter" data-level="1.4.7" data-path="bird-song.html"><a href="bird-song.html#remove-unrealistic-values"><i class="fa fa-check"></i><b>1.4.7</b> Remove unrealistic value(s)</a></li>
-<li class="chapter" data-level="1.4.8" data-path="bird-song.html"><a href="bird-song.html#remove-incorrect-0"><i class="fa fa-check"></i><b>1.4.8</b> Remove incorrect “0”</a></li>
-<li class="chapter" data-level="1.4.9" data-path="bird-song.html"><a href="bird-song.html#other-changes"><i class="fa fa-check"></i><b>1.4.9</b> Other changes</a></li>
-<li class="chapter" data-level="1.4.10" data-path="bird-song.html"><a href="bird-song.html#run-the-analysis"><i class="fa fa-check"></i><b>1.4.10</b> Run the analysis</a></li>
+<li class="chapter" data-level="1.4.2" data-path="bird-song.html"><a href="bird-song.html#change-variable-types"><i class="fa fa-check"></i><b>1.4.2</b> Change variable types</a></li>
+<li class="chapter" data-level="1.4.3" data-path="bird-song.html"><a href="bird-song.html#plot-your-data"><i class="fa fa-check"></i><b>1.4.3</b> Plot your data</a></li>
+<li class="chapter" data-level="1.4.4" data-path="bird-song.html"><a href="bird-song.html#inspect-suspicious-values"><i class="fa fa-check"></i><b>1.4.4</b> Inspect suspicious value(s)</a></li>
+<li class="chapter" data-level="1.4.5" data-path="bird-song.html"><a href="bird-song.html#remove-unrealistic-values"><i class="fa fa-check"></i><b>1.4.5</b> Remove unrealistic value(s)</a></li>
+<li class="chapter" data-level="1.4.6" data-path="bird-song.html"><a href="bird-song.html#remove-incorrect-0"><i class="fa fa-check"></i><b>1.4.6</b> Remove incorrect “0”</a></li>
+<li class="chapter" data-level="1.4.7" data-path="bird-song.html"><a href="bird-song.html#other-changes"><i class="fa fa-check"></i><b>1.4.7</b> Other changes</a></li>
+<li class="chapter" data-level="1.4.8" data-path="bird-song.html"><a href="bird-song.html#run-the-analysis"><i class="fa fa-check"></i><b>1.4.8</b> Run the analysis</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -187,12 +184,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bird-song" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Bird Song</h1>
+<div id="bird-song" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Bird Song<a href="bird-song.html#bird-song" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><small><i>In this chapter, an advanced analysis is shown of the volume of different areas of the bird brain related to song. Your assignment is to read the explanation, have a look at the analysis used, and then perform <strong>data cleaning</strong> on your own data. Once your data is ready, copy the analysis and write a conclusion.</i></small></p>
 <hr />
-<div id="introduction" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Introduction</h2>
+<div id="introduction" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Introduction<a href="bird-song.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Statistical analysis is about explaining the different sources of variance. A source of variance can be of interest, like the different areas of the brain, but it can also simply be a source of potential errors, like which student is performing the measurements, or which particular bird you are measuring. By correctly accounting for the different sources of variance, we end up with a powerful model that gives trustworthy standard errors and <span class="math inline">\(p\)</span>-values.</p>
 <p>In this analysis I want to demonstrate three things:</p>
 <ol style="list-style-type: decimal">
@@ -203,11 +200,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This chapter will demonstrate how (1) study design is a crucial part of scientific research, which dictates the type of model you should use; (2) even if you do not fully understand the (statistical) methods used in papers, you can still judge the validity of one’s approach, and read the results; (3) even simple data cleaning can be a time-consuming task that requires careful consideration of how the data came to be.</p>
 <p>Throughout this chapter I will use example data from a different year. You data should be (more or less) the same. Any differences you can iron out in the data cleaning assignment.</p>
 </div>
-<div id="a-complex-experimental-design" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> A Complex Experimental Design</h2>
+<div id="a-complex-experimental-design" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> A Complex Experimental Design<a href="bird-song.html#a-complex-experimental-design" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The experiment consisted of measuring the total volume of different parts of the brain related to song. This experimental design has two difficulties that I want to address, before showing which model I used. Hopefully that will make it clear <em>why</em> I used the model shown in the next paragraph, even if you are not familiar with it.</p>
-<div id="braintransform" class="section level3" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> The Outcome Is Skewed</h3>
+<div id="braintransform" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> The Outcome Is Skewed<a href="bird-song.html#braintransform" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If a distribution has more deviations in one direction than the other, we call it <a href="https://en.wikipedia.org/wiki/Skewness">skewed</a>:</p>
 <p><img src="Biostatistics_files/figure-html/skewedbrain-1.png" width="672" /></p>
 <p>This histogram of the volume displays strong right-skew: Volumes of <span class="math inline">\(0\)</span>–<span class="math inline">\(0.2\)</span> are most common, <span class="math inline">\(0.2\)</span>–<span class="math inline">\(0.4\)</span> less common, and any larger volumes are exceedingly rare.</p>
@@ -218,8 +215,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can also split by area again and see that there is indeed no more right-skew:</p>
 <p><img src="Biostatistics_files/figure-html/marginalunskewedbrain-1.png" width="672" /></p>
 </div>
-<div id="braindependence" class="section level3" number="1.2.2">
-<h3><span class="header-section-number">1.2.2</span> The Measurements are Dependent</h3>
+<div id="braindependence" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> The Measurements are Dependent<a href="bird-song.html#braindependence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="figure"><span style="display:block;" id="fig:crossedrandomfig"></span>
 <img src="Biostatistics_files/figure-html/crossedrandomfig-1.png" alt="\label{fig:crossedrandom}A simplified version of the experiment. Each bird has had different parts of its brain measured by different students." width="672" />
 <p class="caption">
@@ -238,8 +235,8 @@ Figure 1.1: A simplified version of the experiment. Each bird has had different 
 <p>Fortunately, both problems can be tackled with the same solution: A <font color = "#DB4639"><strong>mixed model</strong></font>.</p>
 </div>
 </div>
-<div id="analysis-with-a-mixed-model" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Analysis With a Mixed Model</h2>
+<div id="analysis-with-a-mixed-model" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Analysis With a Mixed Model<a href="bird-song.html#analysis-with-a-mixed-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To fit a mixed model, we are going to use a package called <code>lmerTest</code>. The entire procedure then boils down to:</p>
 <ol style="list-style-type: decimal">
 <li>Install package <code>lmerTest</code> if you don’t have it;</li>
@@ -250,29 +247,29 @@ Figure 1.1: A simplified version of the experiment. Each bird has had different 
 <li>Specify <a href="bird-song.html#braindependence">which variables cause the dependence</a>.</li>
 </ul></li>
 </ol>
-<div id="install-package-lmertest" class="section level3" number="1.3.1">
-<h3><span class="header-section-number">1.3.1</span> Install Package <code>lmerTest</code></h3>
+<div id="install-package-lmertest" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Install Package <code>lmerTest</code><a href="bird-song.html#install-package-lmertest" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="bird-song.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;lmerTest&quot;</span>)</span></code></pre></div>
 </div>
-<div id="load-package-lmertest" class="section level3" number="1.3.2">
-<h3><span class="header-section-number">1.3.2</span> Load Package <code>lmerTest</code></h3>
+<div id="load-package-lmertest" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Load Package <code>lmerTest</code><a href="bird-song.html#load-package-lmertest" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="bird-song.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;lmerTest&quot;</span>)</span></code></pre></div>
 </div>
-<div id="brainmodel" class="section level3" number="1.3.3">
-<h3><span class="header-section-number">1.3.3</span> Fit a Mixed Model With <code>lmer()</code></h3>
+<div id="brainmodel" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Fit a Mixed Model With <code>lmer()</code><a href="bird-song.html#brainmodel" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s call this model <code>model1</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="bird-song.html#cb3-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(Volume<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">~</span> Area <span class="sc">+</span> Hemisphere <span class="sc">+</span> Treatment <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> BirdID) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> StudentID), <span class="at">data =</span> Birdsong)</span></code></pre></div>
 <ul>
 <li><code>lmer</code> is short for linear mixed effects regression—a mixed model;</li>
 <li><code>Volume</code> is transformed as <span class="math inline">\(\sqrt[3]{x} = x^{\frac{1}{3}}\)</span> <a href="bird-song.html#braintransform">as explained earlier</a>;</li>
-<li><code>Area</code> and <code>Hemisphere</code> are the effects of interest;</li>
+<li><code>Area</code>, <code>Hemisphere</code> and <code>Treatment</code> are the effects of interest;</li>
 <li>Using the <code>(1 | ...)</code> notation, I am telling the function I want to estimate the variance between birds and the variance between students;</li>
 <li>Using the <code>data</code> argument, I am telling the function where to find all these variables.</li>
 </ul>
 <p>That’s the whole model! You might not have been able to think of that yourself, but if you understand why this particular model was used, that is more than enough.</p>
 </div>
-<div id="interpretbrain" class="section level3" number="1.3.4">
-<h3><span class="header-section-number">1.3.4</span> Interpreting the Output</h3>
+<div id="interpretbrain" class="section level3 hasAnchor" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Interpreting the Output<a href="bird-song.html#interpretbrain" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s start by producing a summary of the model:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="bird-song.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model1)</span></code></pre></div>
 <p>There’s a lot going on in the summary, and most of it is not relevant for this assignment. Therefore, the only thing I’ve show here is the <code>Random effects</code> and <code>Fixed effects</code> tabs.</p>
@@ -307,14 +304,14 @@ TreatmentM0   0.364359   0.043560 26.567674   8.365 6.41e-09 ***</code></pre>
 <li>Males (<code>M0</code>) have yet higher volume than <code>F0</code> on average.</li>
 </ul>
 </div>
-<div id="simplifying-the-model" class="section level3" number="1.3.5">
-<h3><span class="header-section-number">1.3.5</span> Simplifying the model</h3>
+<div id="simplifying-the-model" class="section level3 hasAnchor" number="1.3.5">
+<h3><span class="header-section-number">1.3.5</span> Simplifying the model<a href="bird-song.html#simplifying-the-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>So the variance between students is extremely small. This is actually good news, because it means that the measurements do not depend much at all on who is measuring. If this is also the case in your year’s data, it means your class measured consistently. Good job!</p>
 <p>If the effect is so small, you could opt to leave out the random effect for students:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="bird-song.html#cb6-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(Volume<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">~</span> Area <span class="sc">+</span> Hemisphere <span class="sc">+</span> Treatment <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> BirdID), <span class="at">data =</span> Birdsong)</span></code></pre></div>
 </div>
-<div id="comparebrain" class="section level3" number="1.3.6">
-<h3><span class="header-section-number">1.3.6</span> Decide on the right model</h3>
+<div id="comparebrain" class="section level3 hasAnchor" number="1.3.6">
+<h3><span class="header-section-number">1.3.6</span> Decide on the right model<a href="bird-song.html#comparebrain" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Lastly, we use a test to decide which of these models fits the data better:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="bird-song.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model1, model2)                                                           </span></code></pre></div>
 <pre><code>refitting model(s) with ML (instead of REML)</code></pre>
@@ -340,8 +337,8 @@ model1   11 -594.07 -552.69 308.04  -616.07 1.7325  1     0.1881</code></pre>
 <p>That’s a lot to consider at once, and most of these terms you have probably never heard of before. Fortunately, the relevant part is the easiest to interpret: Neither model fits the data significantly better than the other (<span class="math inline">\(p = 0.1881\)</span>).</p>
 <p>The usual thing to do in a situation like this is to go with the model that uses fewer parameters. After all, if you can fit the data just as well with a simpler model, what is the benefit of making it more complex?</p>
 </div>
-<div id="brainoutput" class="section level3" number="1.3.7">
-<h3><span class="header-section-number">1.3.7</span> Interpret the final output</h3>
+<div id="brainoutput" class="section level3 hasAnchor" number="1.3.7">
+<h3><span class="header-section-number">1.3.7</span> Interpret the final output<a href="bird-song.html#brainoutput" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="bird-song.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
 <pre><code>Random effects:
  Groups   Name        Variance Std.Dev.
@@ -364,13 +361,13 @@ TreatmentM0    0.365201   0.044446  27.916048   8.217 6.21e-09 ***</code></pre>
 <p>Moreover, as you’ll see in the assignment, the results match up nicely with what you see in the boxplots.</p>
 </div>
 </div>
-<div id="assignment-data-cleaning" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Assignment: Data Cleaning</h2>
-<p>So far, I have only covered the experimental design and the model used. But I left out an important part of analysis: Data cleaning.</p>
+<div id="assignment-data-cleaning-modeling" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Assignment: Data Cleaning &amp; Modeling<a href="bird-song.html#assignment-data-cleaning-modeling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So far, I have only covered the experimental design and the model used. But I left out an important part of analysis: Data cleaning. Lucky for you, most of the data cleaning this year has already been performed in advance.</p>
 <p>In the example data above, there were simple errors in the data entry, a problematic outlier, and low quality data mislabeled as <span class="math inline">\(0\)</span>. Here I am going to show how you can clean your data set to make it ready for analysis.</p>
 <p><strong>Your assignment</strong> is to clean your own data set following the example here. When you’re done, copy the analysis shown above and write a conclusion.</p>
-<div id="read-the-data-into-r" class="section level3" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> Read the data into R</h3>
+<div id="read-the-data-into-r" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Read the data into R<a href="bird-song.html#read-the-data-into-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <iframe src="https://www.youtube.com/embed/BGUqZc-Pb8w" width="672" height="400px" data-external="1">
 </iframe>
 <ol style="list-style-type: decimal">
@@ -381,13 +378,13 @@ TreatmentM0    0.365201   0.044446  27.916048   8.217 6.21e-09 ***</code></pre>
 <li><a href="https://youtu.be/AHAR7j-IUOw?t=357">Create a new code chunk</a> and run the following code (<strong>replace the file name</strong> with your file name):</li>
 </ol>
 <pre><code>## &#39;data.frame&#39;:    376 obs. of  6 variables:
-##  $ Student_ID   : int  42 42 42 42 42 73 73 73 73 73 ...
-##  $ Zanggebied   : chr  &quot;RA&quot; &quot;RA&quot; &quot;RA&quot; &quot;RA&quot; ...
-##  $ Hemisfeer    : chr  &quot;R&quot; &quot;R&quot; &quot;R&quot; &quot;R&quot; ...
-##  $ Vogel_ID     : chr  &quot;OG164&quot; &quot;PK179&quot; &quot;PK190&quot; &quot;PK198&quot; ...
-##  $ Totaal_volume: num  0.1104 0.0276 0.2304 0.0204 0.3012 ...
-##  $ Treatment    : chr  &quot;NA&quot; &quot;F0&quot; &quot;F50&quot; &quot;F5&quot; ...</code></pre>
-<p><strong>Note</strong>: I will go over the data cleaning of the <strong>2020 data</strong>. You can follow along with the data from your own year. Of course, there will be slightly different issues with the data from your year, but the same steps can be followed as a starting point.</p>
+##  $ StudentID : int  42 42 42 42 42 73 73 73 73 73 ...
+##  $ Area      : chr  &quot;RA&quot; &quot;RA&quot; &quot;RA&quot; &quot;RA&quot; ...
+##  $ Hemisphere: chr  &quot;R&quot; &quot;R&quot; &quot;R&quot; &quot;R&quot; ...
+##  $ BirdID    : chr  &quot;OG164&quot; &quot;PK179&quot; &quot;PK190&quot; &quot;PK198&quot; ...
+##  $ Volume    : num  0.1104 0.0276 0.2304 0.0204 0.3012 ...
+##  $ Treatment : chr  NA &quot;F0&quot; &quot;F50&quot; &quot;F5&quot; ...</code></pre>
+<p><strong>Note</strong>: I will go over the data cleaning &amp; analysis of the <strong>2020 data</strong>. You can follow along with the data from your own year. Of course, everything will be slightly different than the data from your year, but the same steps can be followed as a starting point.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="bird-song.html#cb13-1" aria-hidden="true" tabindex="-1"></a>Birdsong <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;Birdsong2020.csv&quot;</span>) <span class="co"># Change this to your year</span></span>
 <span id="cb13-2"><a href="bird-song.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Birdsong)</span></code></pre></div>
 <p>Here we see the following:</p>
@@ -395,89 +392,72 @@ TreatmentM0    0.365201   0.044446  27.916048   8.217 6.21e-09 ***</code></pre>
 <li>The data is stored as a <code>data.frame</code>, and consists of 376 observations of 5 variables;</li>
 <li>Those variables are:
 <ul>
-<li><code>Student_ID</code>: integer (whole numbers);</li>
-<li><code>Zanggebied</code>: character;</li>
-<li><code>Hemisfeer</code>: character;</li>
-<li><code>Vogel_ID</code>: character;</li>
-<li><code>Totaal_volume</code>: numeric (any number);</li>
+<li><code>StudentID</code>: integer (whole numbers);</li>
+<li><code>Area</code>: character;</li>
+<li><code>Hemisphere</code>: character;</li>
+<li><code>BirdID</code>: character;</li>
+<li><code>Volume</code>: numeric (any number);</li>
 <li><code>Treatment</code>: character.</li>
 </ul></li>
 </ul>
 </div>
-<div id="shorten-variable-names" class="section level3" number="1.4.2">
-<h3><span class="header-section-number">1.4.2</span> Shorten variable names</h3>
-<p>In the first step, we change the variable names to be slightly shorter (and in English).</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="bird-song.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Birdsong)  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;StudentID&quot;</span>, <span class="st">&quot;Area&quot;</span>, <span class="st">&quot;Hemisphere&quot;</span>, <span class="st">&quot;BirdID&quot;</span>, <span class="st">&quot;Volume&quot;</span>, <span class="st">&quot;Treatment&quot;</span>)</span></code></pre></div>
-</div>
-<div id="change-variable-types" class="section level3" number="1.4.3">
-<h3><span class="header-section-number">1.4.3</span> Change variable types</h3>
+<div id="change-variable-types" class="section level3 hasAnchor" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> Change variable types<a href="bird-song.html#change-variable-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Then we convert the categorical variables to factors:</p>
-<p><small>Do you get an error here? Then your year’s data has been kept differently from the example. Go to Brightspace for a script to get started with your year’s data cleaning.</small></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="bird-song.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Birdsong)  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;StudentID&quot;</span>, <span class="st">&quot;Area&quot;</span>, <span class="st">&quot;Hemisphere&quot;</span>, <span class="st">&quot;BirdID&quot;</span>, <span class="st">&quot;Volume&quot;</span>, <span class="st">&quot;Treatment&quot;</span>)</span>
-<span id="cb15-2"><a href="bird-song.html#cb15-2" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>StudentID  <span class="ot">&lt;-</span> <span class="fu">factor</span>(Birdsong<span class="sc">$</span>StudentID)</span>
-<span id="cb15-3"><a href="bird-song.html#cb15-3" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>Area       <span class="ot">&lt;-</span> <span class="fu">factor</span>(Birdsong<span class="sc">$</span>Area)</span>
-<span id="cb15-4"><a href="bird-song.html#cb15-4" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>Hemisphere <span class="ot">&lt;-</span> <span class="fu">factor</span>(Birdsong<span class="sc">$</span>Hemisphere)</span>
-<span id="cb15-5"><a href="bird-song.html#cb15-5" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>BirdID     <span class="ot">&lt;-</span> <span class="fu">factor</span>(Birdsong<span class="sc">$</span>BirdID)</span>
-<span id="cb15-6"><a href="bird-song.html#cb15-6" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>Treatment  <span class="ot">&lt;-</span> <span class="fu">factor</span>(Birdsong<span class="sc">$</span>Treatment, </span>
-<span id="cb15-7"><a href="bird-song.html#cb15-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;F0&quot;</span>, <span class="st">&quot;F5&quot;</span>, <span class="st">&quot;F15&quot;</span>, <span class="st">&quot;F50&quot;</span>, <span class="st">&quot;M0&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="bird-song.html#cb14-1" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>StudentID  <span class="ot">&lt;-</span> <span class="fu">factor</span>(Birdsong<span class="sc">$</span>StudentID)</span>
+<span id="cb14-2"><a href="bird-song.html#cb14-2" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>Area       <span class="ot">&lt;-</span> <span class="fu">factor</span>(Birdsong<span class="sc">$</span>Area)</span>
+<span id="cb14-3"><a href="bird-song.html#cb14-3" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>Hemisphere <span class="ot">&lt;-</span> <span class="fu">factor</span>(Birdsong<span class="sc">$</span>Hemisphere)</span>
+<span id="cb14-4"><a href="bird-song.html#cb14-4" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>BirdID     <span class="ot">&lt;-</span> <span class="fu">factor</span>(Birdsong<span class="sc">$</span>BirdID)</span>
+<span id="cb14-5"><a href="bird-song.html#cb14-5" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>Treatment  <span class="ot">&lt;-</span> <span class="fu">factor</span>(Birdsong<span class="sc">$</span>Treatment, </span>
+<span id="cb14-6"><a href="bird-song.html#cb14-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;F0&quot;</span>, <span class="st">&quot;F5&quot;</span>, <span class="st">&quot;F15&quot;</span>, <span class="st">&quot;F50&quot;</span>, <span class="st">&quot;M0&quot;</span>))</span></code></pre></div>
 <p>Why does that matter? Well, have a look what happens when you check the structure again:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="bird-song.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Birdsong)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="bird-song.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(Birdsong)</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    376 obs. of  6 variables:
 ##  $ StudentID : Factor w/ 75 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 38 38 38 38 38 65 65 65 65 65 ...
-##  $ Area      : Factor w/ 5 levels &quot;Area X&quot;,&quot;HCV&quot;,..: 5 5 5 5 5 1 1 1 1 1 ...
+##  $ Area      : Factor w/ 3 levels &quot;Area X&quot;,&quot;HVC&quot;,..: 3 3 3 3 3 1 1 1 1 1 ...
 ##  $ Hemisphere: Factor w/ 2 levels &quot;L&quot;,&quot;R&quot;: 2 2 2 2 2 1 1 1 1 1 ...
 ##  $ BirdID    : Factor w/ 69 levels &quot;Bk 145&quot;,&quot;BK 145&quot;,..: 38 59 60 61 68 64 19 49 51 50 ...
 ##  $ Volume    : num  0.1104 0.0276 0.2304 0.0204 0.3012 ...
 ##  $ Treatment : Factor w/ 5 levels &quot;F0&quot;,&quot;F5&quot;,&quot;F15&quot;,..: NA 1 4 2 5 5 3 1 2 4 ...</code></pre>
-<p>Now we see that there were apparently 75 students, and… wait, <em>5</em> areas?</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="bird-song.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(Birdsong<span class="sc">$</span>Area)</span></code></pre></div>
-<pre><code>## Area X    HCV    HVC     Ra     RA 
-##    125      5    128      1    117</code></pre>
-<p>Ah, some people entered <code>Ra</code> instead of <code>RA</code>, and some entered <code>HCV</code> instead of <code>HVC</code>. Let’s fix their mistakes:</p>
+<p>Now we see that there were apparently 75 students, and 3 areas. Correct variable types also matter for ease of analysis, as explained in the <a href="https://fransrodenburg.github.io/Tutorials/anova.html#read-ANOVA">statistics tutorials <i class="fa fa-external-link"></i></a>. <small><em>(See: “Why not just use <code>character</code>?”)</em></small></p>
 </div>
-<div id="fix-errors-in-data-entry" class="section level3" number="1.4.4">
-<h3><span class="header-section-number">1.4.4</span> Fix errors in data entry</h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="bird-song.html#cb20-1" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>Area[Birdsong<span class="sc">$</span>Area <span class="sc">==</span> <span class="st">&quot;Ra&quot;</span>]  <span class="ot">&lt;-</span> <span class="st">&quot;RA&quot;</span></span>
-<span id="cb20-2"><a href="bird-song.html#cb20-2" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>Area[Birdsong<span class="sc">$</span>Area <span class="sc">==</span> <span class="st">&quot;HCV&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;HVC&quot;</span></span>
-<span id="cb20-3"><a href="bird-song.html#cb20-3" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>Area <span class="ot">&lt;-</span> <span class="fu">droplevels</span>(Birdsong<span class="sc">$</span>Area)</span></code></pre></div>
-<p>The first two lines correct the wrong entries, and the third line removes the now unused levels <code>Ra</code> and <code>HCV</code>.</p>
-</div>
-<div id="plot-your-data" class="section level3" number="1.4.5">
-<h3><span class="header-section-number">1.4.5</span> Plot your data</h3>
+<div id="plot-your-data" class="section level3 hasAnchor" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Plot your data<a href="bird-song.html#plot-your-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>And now we’re good to go! The first thing you should do in any analysis after reading the data is to try and create one or several relevant plots of your data. No amount of looking at numbers is going to give you the same, easy insight as a figure:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="bird-song.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Volume <span class="sc">~</span> Hemisphere <span class="sc">*</span> Area, <span class="at">data =</span> Birdsong)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="bird-song.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Volume <span class="sc">~</span> Hemisphere <span class="sc">*</span> Area, <span class="at">data =</span> Birdsong)</span></code></pre></div>
 <p><img src="Biostatistics_files/figure-html/plot-1.png" width="672" /></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="bird-song.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Volume <span class="sc">~</span> Treatment, <span class="at">data =</span> Birdsong)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="bird-song.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Volume <span class="sc">~</span> Treatment, <span class="at">data =</span> Birdsong)</span></code></pre></div>
 <p><img src="Biostatistics_files/figure-html/plot-2.png" width="672" /></p>
 <p>We can already make several useful observations:</p>
 <ul>
-<li>Area X seems to have a larger mean<a href="references.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and variance<a href="references.html#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> than the rest;</li>
+<li>Area X seems to have a larger mean<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and variance<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> than the rest;</li>
 <li>The left and right hemispheres do not seem to differ much;</li>
 <li>Volume seems to increase from <code>F0</code> to <code>F5</code>, to <code>F15</code> to <code>F50</code>, and males have even larger volume;</li>
-<li>There is a suspiciously large value for area X of the right hemisphere (first figure). Is this an unrealistic value?</li>
+<li>There is a suspiciously large value for area X of the right hemisphere (first figure). Is this an unrealistic value? <small><em>(This is not necessarily the case in your year’s version of the data!)</em></small></li>
 </ul>
+<p>Want to upgrade your plot to something more publication-ready? See the tips provided <a href="https://fransrodenburg.github.io/Tutorials/anova.html#vis-ANOVA">here <i class="fa fa-external-link"></i></a>.</p>
 </div>
-<div id="inspect-suspicious-values" class="section level3" number="1.4.6">
-<h3><span class="header-section-number">1.4.6</span> Inspect suspicious value(s)</h3>
+<div id="inspect-suspicious-values" class="section level3 hasAnchor" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> Inspect suspicious value(s)<a href="bird-song.html#inspect-suspicious-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s inspect the suspicious value further. Since it is the largest value, I can use <code>which.max</code> to find it:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="bird-song.html#cb23-1" aria-hidden="true" tabindex="-1"></a>suspicious <span class="ot">&lt;-</span> <span class="fu">which.max</span>(Birdsong<span class="sc">$</span>Volume)</span>
-<span id="cb23-2"><a href="bird-song.html#cb23-2" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>Volume[suspicious] <span class="sc">/</span> <span class="fu">mean</span>(Birdsong<span class="sc">$</span>Volume, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="bird-song.html#cb19-1" aria-hidden="true" tabindex="-1"></a>suspicious <span class="ot">&lt;-</span> <span class="fu">which.max</span>(Birdsong<span class="sc">$</span>Volume)</span>
+<span id="cb19-2"><a href="bird-song.html#cb19-2" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>Volume[suspicious] <span class="sc">/</span> <span class="fu">mean</span>(Birdsong<span class="sc">$</span>Volume, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 53.86181</code></pre>
 <p>This value is <span class="math inline">\(53.9 \times\)</span> larger than the mean total volume. Keep in mind that volume is a three-dimensional measurement. It grows at a rate of <span class="math inline">\(x^3\)</span> with the length, width and depth of the brain. Therefore, at least some extreme observations are expected… So let’s use a transformation that accounts for this:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="bird-song.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Volume<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">~</span> Hemisphere <span class="sc">*</span> Area, <span class="at">data =</span> Birdsong)</span></code></pre></div>
-<p><img src="Biostatistics_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="bird-song.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Volume<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">~</span> Hemisphere <span class="sc">*</span> Area, <span class="at">data =</span> Birdsong)</span></code></pre></div>
+<p><img src="Biostatistics_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Even with a transformation of <span class="math inline">\(\text{volume}^\frac{1}{3}\)</span>, the suspiciously large value still sticks out quite a lot.</p>
 </div>
-<div id="remove-unrealistic-values" class="section level3" number="1.4.7">
-<h3><span class="header-section-number">1.4.7</span> Remove unrealistic value(s)</h3>
+<div id="remove-unrealistic-values" class="section level3 hasAnchor" number="1.4.5">
+<h3><span class="header-section-number">1.4.5</span> Remove unrealistic value(s)<a href="bird-song.html#remove-unrealistic-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>It is hard to say what this value is supposed to be. It could have been a misplaced decimal separator, but should it then be <span class="math inline">\(1.4292\)</span>, or <span class="math inline">\(0.14292\)</span>? Since we cannot say for sure what it should have been, let’s omit this observation from further analysis:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="bird-song.html#cb26-1" aria-hidden="true" tabindex="-1"></a>Birdsong <span class="ot">&lt;-</span> Birdsong[<span class="sc">-</span>suspicious, ]</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="bird-song.html#cb22-1" aria-hidden="true" tabindex="-1"></a>Birdsong <span class="ot">&lt;-</span> Birdsong[<span class="sc">-</span>suspicious, ]</span></code></pre></div>
 <p>If this analysis were to be used in a publication, we would have to go further: How much does this observation affect the results? Can we use a form of multiple imputation to fill in the missing value we have now created? But for now we’ll leave it at this.</p>
 <p>Let’s create the boxplots again to see what the data look like without the suspicious value:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="bird-song.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Volume<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">~</span> Hemisphere <span class="sc">*</span> Area, <span class="at">data =</span> Birdsong)</span></code></pre></div>
-<p><img src="Biostatistics_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="bird-song.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Volume<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">~</span> Hemisphere <span class="sc">*</span> Area, <span class="at">data =</span> Birdsong)</span></code></pre></div>
+<p><img src="Biostatistics_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>This looks far more reasonable. Now let’s address the next elephant in the room: There appears to be far greater variance in the volume of area X, than in RA or HVC. But notice how measurements of zero almost exclusively occur in area X. We can confirm this as follows:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="bird-song.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">by</span>(Birdsong, Birdsong<span class="sc">$</span>Area, <span class="cf">function</span>(x){<span class="fu">sum</span>(x <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)})</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="bird-song.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">by</span>(Birdsong, Birdsong<span class="sc">$</span>Area, <span class="cf">function</span>(x){<span class="fu">sum</span>(x <span class="sc">==</span> <span class="dv">0</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)})</span></code></pre></div>
 <pre><code>## Birdsong$Area: Area X
 ## [1] 45
 ## ------------------------------------------------------------ 
@@ -486,41 +466,49 @@ TreatmentM0    0.365201   0.044446  27.916048   8.217 6.21e-09 ***</code></pre>
 ## ------------------------------------------------------------ 
 ## Birdsong$Area: RA
 ## [1] 0</code></pre>
-<p>How do we deal with this? There are several ways to do so, and the best way depends on the problem being studied, as well as the reason for measurements being <span class="math inline">\(0\)</span>. We could, for example, consider these zeroes to be ‘censored’, meaning that they are not actually zero, but just too small to be picked up by the measurement. These kinds of considerations are what make statistical modeling difficult.</p>
+<p>How do we deal with this? There are several ways to do so, and the best way depends on the problem being studied, as well as the reason for measurements being <span class="math inline">\(0\)</span>. We could, for example, consider these zeroes to be ‘censored’, meaning that they are not actually zero, but just too small to be picked up by the measurement. There is a whole subfield of statistics concerned with this phenomenon, called <a href="https://youtu.be/t6vdjwhauF8">survival analysis <font color = "red"><i class="fa fa-youtube-play"></i></font></a>, but that is beyond the scope of this exercise. These kinds of considerations are what make statistical modeling difficult.</p>
 </div>
-<div id="remove-incorrect-0" class="section level3" number="1.4.8">
-<h3><span class="header-section-number">1.4.8</span> Remove incorrect “0”</h3>
+<div id="remove-incorrect-0" class="section level3 hasAnchor" number="1.4.6">
+<h3><span class="header-section-number">1.4.6</span> Remove incorrect “0”<a href="bird-song.html#remove-incorrect-0" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Fortunately, the cause of the zeroes was in most cases simply a low quality sample, unrelated to the actual volume. It is still suspicious that this happened considerably more often in area X than elsewhere, but for the purpose of this exercise let’s consider these measurements to be missing completely at random. Whatever they were, they weren’t <span class="math inline">\(0\)</span>, and this is skewing the results strongly otherwise.</p>
 <p>Therefore, in the next step we set these values to ‘not available’ (<code>NA</code>):</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="bird-song.html#cb30-1" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>Volume[Birdsong<span class="sc">$</span>Volume <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="bird-song.html#cb26-1" aria-hidden="true" tabindex="-1"></a>Birdsong<span class="sc">$</span>Volume[Birdsong<span class="sc">$</span>Volume <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span></code></pre></div>
 <p>One final time we inspect the boxplots:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="bird-song.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Volume<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">~</span> Hemisphere <span class="sc">*</span> Area, <span class="at">data =</span> Birdsong)</span></code></pre></div>
-<p><img src="Biostatistics_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="bird-song.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Volume<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">~</span> Hemisphere <span class="sc">*</span> Area, <span class="at">data =</span> Birdsong)</span></code></pre></div>
+<p><img src="Biostatistics_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>And now we have a fairly good idea of what we should expect in the results: HVC is lower than area X, and RA is even lower. The difference between hemispheres is extremely small and unlikely to be picked up by the model.</p>
 </div>
-<div id="other-changes" class="section level3" number="1.4.9">
-<h3><span class="header-section-number">1.4.9</span> Other changes</h3>
+<div id="other-changes" class="section level3 hasAnchor" number="1.4.7">
+<h3><span class="header-section-number">1.4.7</span> Other changes<a href="bird-song.html#other-changes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Are there any other strange values, incorrect labels, or other problems in your version of the data set? Adjust the data in R as you see fit before moving on to the analysis.</p>
 </div>
-<div id="run-the-analysis" class="section level3" number="1.4.10">
-<h3><span class="header-section-number">1.4.10</span> Run the analysis</h3>
+<div id="run-the-analysis" class="section level3 hasAnchor" number="1.4.8">
+<h3><span class="header-section-number">1.4.8</span> Run the analysis<a href="bird-song.html#run-the-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Once you’re over here, you can copy the models I’ve <a href="bird-song.html#brainmodel">shown above</a>:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="bird-song.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;lmerTest&quot;</span>) <span class="co"># install if missing!</span></span>
-<span id="cb32-2"><a href="bird-song.html#cb32-2" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(Volume<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">~</span> Area <span class="sc">+</span> Hemisphere <span class="sc">+</span> Treatment <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> BirdID) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> StudentID), </span>
-<span id="cb32-3"><a href="bird-song.html#cb32-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> Birdsong)</span>
-<span id="cb32-4"><a href="bird-song.html#cb32-4" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(Volume<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">~</span> Area <span class="sc">+</span> Hemisphere <span class="sc">+</span> Treatment <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> BirdID), </span>
-<span id="cb32-5"><a href="bird-song.html#cb32-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> Birdsong)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="bird-song.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;lmerTest&quot;</span>) <span class="co"># install if missing!</span></span>
+<span id="cb28-2"><a href="bird-song.html#cb28-2" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(Volume<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">~</span> Area <span class="sc">+</span> Hemisphere <span class="sc">+</span> Treatment <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> BirdID) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> StudentID), </span>
+<span id="cb28-3"><a href="bird-song.html#cb28-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> Birdsong)</span>
+<span id="cb28-4"><a href="bird-song.html#cb28-4" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(Volume<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>) <span class="sc">~</span> Area <span class="sc">+</span> Hemisphere <span class="sc">+</span> Treatment <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> BirdID), </span>
+<span id="cb28-5"><a href="bird-song.html#cb28-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> Birdsong)</span></code></pre></div>
 <p><b>Checklist</b>:</p>
 <ul>
-<li>Do both models run without warnings or errors?</li>
-<li>Can you <a href="bird-song.html#comparebrain">compare the models like shown before</a>?</li>
-<li>What do you conclude from <a href="bird-song.html#brainoutput">the output</a>?</li>
-<li>Which differences are significant? Can you think of an explanation why?</li>
-<li>When you are finished, knit your file to Word.</li>
+<li><p>Do both models run without warnings or errors?</p></li>
+<li><p>Can you <a href="bird-song.html#comparebrain">compare the models like shown before</a>? Which one did you end up choosing?</p></li>
+<li><p>What do you conclude from <a href="bird-song.html#brainoutput">the output</a>?</p></li>
+<li><p>Which differences are significant? Can you think of an explanation why?</p></li>
+<li><p>When you are finished, knit your file to Word. <small><em>(Still have your statistics portfolio file from last year? Consider adding this exercise as a chapter so you can easily find your all your previous analyses later on in your education.)</em></small></p></li>
+<li><p>(Bonus) If you have time left, see if you can install the package <code>sjPlot</code> and produce a <a href="https://strengejacke.github.io/sjPlot/articles/plot_marginal_effects.html#marginal-effects">marginal effects plot <i class="fa fa-external-link"></i></a> of your entire model (using the variables <code>Treatment</code>, <code>Area</code> and <code>Hemisphere</code>)</p></li>
 </ul>
 
 </div>
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p><small>If the mean is larger, the location of the boxplot is higher.</small><a href="bird-song.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p><small>If the variance is larger, the size of the boxplot is larger.</small><a href="bird-song.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
@@ -589,7 +577,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
